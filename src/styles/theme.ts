@@ -33,11 +33,13 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 declare module "@material-ui/core/styles/createPalette" {
   interface Palette {
     blue: Palette['primary'],
-    white: Palette['primary']
+    white: Palette['primary'],
+    grey: Palette['primary']
   }
   interface PaletteOptions {
     blue: PaletteOptions['primary'],
-    white: PaletteOptions['primary']
+    white: PaletteOptions['primary'],
+    grey: PaletteOptions['primary']
   }
 }
 
@@ -50,10 +52,15 @@ export const theme = createMuiTheme({
       main: '#d81b60',
     },
     blue: {
-      main: '#235789'
+      light: '#5a9ee0',
+      main: '#235789',
+      dark: '#083b6e'
     },
     white: {
-      main: '#FFF'
+      main: '#6b6b6b',
+    },
+    grey: {
+      main: '#6b6b6b',
     }
   },
   breakpoints: {
@@ -73,5 +80,8 @@ export const theme = createMuiTheme({
       'Roboto',
       'Arial',
     ].join(','),
+    h4: {
+      fontWeight: 300
+    }
   },
 });
