@@ -16,7 +16,10 @@ const useStyles = makeStyles((theme) => ({
     },
     appBar: {
         boxShadow: 'none',
-        position: 'relative'
+        position: 'relative',
+    },
+    innerHeader: {
+        padding: '0px'
     }
 }));
 
@@ -30,7 +33,7 @@ const Header = () => {
     return (
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
+                <Toolbar className={classes.innerHeader}>
                     <Typography variant="h6" className={classes.title}>
                         {logo}
                     </Typography>
