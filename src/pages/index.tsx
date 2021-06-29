@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.main,
         display: 'flex'
     },
+    mainDiv: {
+        display: 'flex'
+    },
     footer: {
-        paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
         backgroundColor: theme.palette.primary.main,
         display: 'flex'
     }
@@ -52,7 +53,7 @@ export default function Home() {
                         <Header />
                     </Grid>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.mainDiv}>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <ThreeCards />
