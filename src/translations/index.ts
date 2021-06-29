@@ -17,6 +17,11 @@ export const translations = {
                     text: 'Use filters to find questions to level that you want.'
                 }
             ]
+        },
+        footer: {
+            techList: 'Languages',
+            contactUs: 'contact us:',
+            contactUsEmail: 'contact@techinterview.com'
         }
     }
 }
