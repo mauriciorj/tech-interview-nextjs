@@ -5,12 +5,19 @@ import { translations } from '../translations';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../components/header';
 import ThreeCards from '../components/threeCards';
+import Footer from '../components/footer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1
     },
     header: {
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
+        backgroundColor: theme.palette.primary.main,
+        display: 'flex'
+    },
+    footer: {
         paddingTop: theme.spacing(1),
         paddingBottom: theme.spacing(1),
         backgroundColor: theme.palette.primary.main,
@@ -49,6 +56,12 @@ export default function Home() {
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <ThreeCards />
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} className={classes.footer}>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={10}>
+                        <Footer />
                     </Grid>
                 </Grid>
             </Grid>
