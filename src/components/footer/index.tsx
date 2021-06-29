@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         marginTop: '30px',
         marginBottom: '30px',
+        justifyContent: 'center',
     },
     footerTitle: {
         color: theme.palette.white.main,
@@ -37,7 +38,7 @@ const Footer = () => {
                     </ListItem>
                 </List>
             </Grid>
-            <Grid item md={4} xs={10}>
+            <Grid item md={3} xs={10}>
                 <Typography variant="subtitle1" className={classes.footerTechList}><strong>{translations.en.footer.contactUs}</strong> {translations.en.footer.contactUsEmail}</Typography>
             </Grid>
         </Grid>
