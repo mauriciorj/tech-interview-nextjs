@@ -32,10 +32,12 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
 declare module "@material-ui/core/styles/createPalette" {
   interface Palette {
-    blue: Palette['primary'];
+    blue: Palette['primary'],
+    white: Palette['primary']
   }
   interface PaletteOptions {
-    blue: PaletteOptions['primary'];
+    blue: PaletteOptions['primary'],
+    white: PaletteOptions['primary']
   }
 }
 
@@ -49,6 +51,9 @@ export const theme = createMuiTheme({
     },
     blue: {
       main: '#235789'
+    },
+    white: {
+      main: '#FFF'
     }
   },
   breakpoints: {
@@ -65,16 +70,8 @@ export const theme = createMuiTheme({
   },
   typography: {
     fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
       'Roboto',
-      '"Helvetica Neue"',
       'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
     ].join(','),
   },
 });
