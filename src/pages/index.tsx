@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 import { translations } from '../translations';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../components/header';
+import ThreeCards from '../components/threeCards';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,6 +43,12 @@ export default function Home() {
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <Header />
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={10}>
+                        <ThreeCards />
                     </Grid>
                 </Grid>
             </Grid>
