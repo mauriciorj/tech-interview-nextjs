@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 import { translations } from '../translations';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../components/header';
+import HeroBanner from '../components/heroBanner';
 import ThreeCards from '../components/threeCards';
 import Footer from '../components/footer';
 
@@ -51,6 +52,12 @@ export default function Home() {
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <Header />
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} className={classes.mainDiv}>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={10}>
+                        <HeroBanner />
                     </Grid>
                 </Grid>
                 <Grid item xs={12} className={classes.mainDiv}>

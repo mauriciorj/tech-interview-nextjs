@@ -1,6 +1,11 @@
 export const translations = {
     en: {
         logo: 'Tech Interview',
+        heroBanner: {
+            title: 'Be prepared to get your dream\'s job.',
+            text: 'Learn what you really need.',
+            altText: 'Learn what you really need.',
+        },
         threeCards: {
             title: 'How does Tech Interview work ?',
             card: [
