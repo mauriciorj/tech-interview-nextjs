@@ -1,8 +1,18 @@
 import React from 'react';
 import { translations } from '../../translations';
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import {
+    AppBar,
+    IconButton,
+    Menu,
+    MenuItem,
+    Toolbar,
+    Grid,
+    Typography,
+    useMediaQuery,
+} from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,34 +21,86 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2)
     },
-    title: {
-        flexGrow: 1
-    },
     appBar: {
         boxShadow: 'none',
-        position: 'relative',
+        position: 'relative'
     },
     innerHeader: {
         padding: '0px'
-    }
+    },
+    menuArea: {
+        textAlign: 'end'
+    },
+    menu: {
+        marginTop: '40px'
+    },
 }));
 
 const Header = () => {
     const classes = useStyles();
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
+    const isMenuOpen = Boolean(anchorEl);
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const menuId = 'primary-search-account-menu';
+
     const {
         en: { logo }
     } = translations;
+
+    const renderMenu = (
+        <Menu
+            anchorEl={anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+            className={classes.menu}
+            disableScrollLock={true}>
+            <MenuItem>Javascript</MenuItem>
+            <MenuItem>React</MenuItem>
+        </Menu>
+    );
 
     return (
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar className={classes.innerHeader}>
-                    <Typography variant="h6" className={classes.title}>
-                        {logo}
-                    </Typography>
+                    <Grid item xs={6}>
+                        <Typography variant="h6">{logo}</Typography>
+                    </Grid>
+                    <Grid item xs={6} className={classes.menuArea}>
+                        {!matches ? (
+                            <IconButton
+                                edge="end"
+                                color="inherit"
+                                aria-label="menu"
+                                onClick={handleProfileMenuOpen}>
+                                <MenuIcon />
+                            </IconButton>
+                        ) : (
+                            <Typography variant="h6" onClick={handleProfileMenuOpen}>
+                                Techs
+                            </Typography>
+                        )}
+                    </Grid>
                 </Toolbar>
             </AppBar>
+            {renderMenu}
         </div>
     );
 };
