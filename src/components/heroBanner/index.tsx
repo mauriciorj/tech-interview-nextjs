@@ -27,11 +27,11 @@ const HeroBanner = () => {
 
     return (
         <Grid container item xs={12} className={classes.sessionMainDiv}>
-            <Grid xs={12} sm={12} md={6} className={classes.sessionMainText}>
+            <Grid item xs={12} sm={12} md={6} className={classes.sessionMainText}>
                 <Typography variant="h4">{translations.en.heroBanner.title}</Typography>
                 <Typography variant="subtitle1">{translations.en.heroBanner.text}</Typography>
             </Grid>
-            <Grid xs={12} sm={12} md={6} className={classes.sessionMainImg}>
+            <Grid item xs={12} sm={12} md={6} className={classes.sessionMainImg}>
                 <Image src={heroBanner} alt={translations.en.heroBanner.altText} width={500} height={500} />
             </Grid>
         </Grid>
