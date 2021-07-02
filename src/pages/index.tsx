@@ -38,9 +38,9 @@ export default function Home() {
 
     useEffect(() => {
         setIsMounted(true);
-    }, [])
+    }, []);
 
-    return (isMounted ?
+    return isMounted ? (
         <div className={classes.root}>
             <Grid container item xs={12}>
                 <Head>
@@ -74,6 +74,5 @@ export default function Home() {
                 </Grid>
             </Grid>
         </div>
-        : null // TODO: create a pre loading skeleton
-    );
+    ) : null; // TODO: create a pre loading skeleton
 }

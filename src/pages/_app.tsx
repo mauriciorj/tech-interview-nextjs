@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import '../pages/RichTextEditor/react-draft-wysiwyg.css';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from '../styles/theme';
