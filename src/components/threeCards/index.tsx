@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center'
     },
     avatarCard: {
-        color: 'white',
         height: '70px',
         width: '70px',
         color: theme.palette.white.main,
