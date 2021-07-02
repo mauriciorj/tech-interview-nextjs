@@ -50,7 +50,7 @@ const Header = () => {
         setAnchorEl(null);
     };
 
-    const handleProfileMenuOpen = (event) => {
+    const handleProfileMenuOpen = (event: any) => {
         setAnchorEl(event.currentTarget);
     };
 
