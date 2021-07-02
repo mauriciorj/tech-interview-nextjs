@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import dynamic from 'next/dynamic';
-import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 const Editor = dynamic<any>(() => import('react-draft-wysiwyg').then((mod) => mod.Editor), {
     ssr: false
 });

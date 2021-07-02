@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import {
-    Box,
-    Grid,
-    makeStyles,
-    Typography
-} from '@material-ui/core';
+import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import { useRouter } from 'next/dist/client/router';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 import QuestionCard from '../../components/questionCard';
 import BreadCrumbs from '../../components/breadCrumbs';
 import { translations } from '../../translations';
-import { questionsDb } from '../questions/questionsDb';
+import { questionsDb } from '../../db/questionsDb';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         textAlign: 'left',
         marginTop: '40px',
-        marginBottom: '50px',
+        marginBottom: '50px'
     },
     title: {
         marginTop: '30px',
@@ -45,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '20px',
         marginBottom: '20px',
         width: '100%'
-    },
+    }
 }));
 
 const Questions = () => {
@@ -60,7 +55,7 @@ const Questions = () => {
         query: { questionsId }
     } = router;
 
-    let title = questionsId;
+    const title = questionsId;
     // if(questionsId){
     //     title = questionsId.charAt(0).toUpperCase() + questionsId.slice(1);
     // }
@@ -68,22 +63,22 @@ const Questions = () => {
     const breadCrumb = [
         {
             link: '/',
-            title: 'Home',
+            title: 'Home'
         },
         {
             title: `Questions: ${questionsId}`
         }
-    ]
+    ];
 
     const [isMounted, setIsMounted] = useState<boolean>(false);
 
     useEffect(() => {
         setIsMounted(true);
-    }, [])
+    }, []);
 
     const getQUestions = questionsDb.en.filter((item) => item.tech === questionsId);
 
-    return (isMounted ?
+    return isMounted ? (
         <div className={classes.root}>
             <Grid container item xs={12}>
                 <Head>
@@ -100,21 +95,20 @@ const Questions = () => {
                 <Grid container item xs={12} className={classes.sessionMainDiv}>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
-                        <BreadCrumbs breadCrumbInfo={breadCrumb}/>
+                        <BreadCrumbs breadCrumbInfo={breadCrumb} />
                         <Box className={classes.title}>
                             <Typography variant="h4">{title}</Typography>
                         </Box>
                         <Grid item xs={10} className={classes.cardSession}>
-                            {getQUestions.map((item) =>
+                            {getQUestions.map((item) => (
                                 <QuestionCard
                                     answer={item.answer}
                                     key={item.id}
                                     id={item.id}
                                     level={item.level}
                                     question={item.question}
-
                                 />
-                            )}
+                            ))}
                         </Grid>
                     </Grid>
                 </Grid>
@@ -126,8 +120,7 @@ const Questions = () => {
                 </Grid>
             </Grid>
         </div>
-        : null // TODO: create a pre loading skeleton
-    );
+    ) : null; // TODO: create a pre loading skeleton
 };
 
 export default Questions;

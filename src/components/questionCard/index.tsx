@@ -37,10 +37,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '-5px',
         textAlign: 'right'
     },
-    cardChip: (chipColor: PropsStyle) => ({
-        backgroundColor: chipColor.backgroundColor,
-        color: chipColor.color,
-    } as any),
+    cardChip: (chipColor: PropsStyle) =>
+        ({
+            backgroundColor: chipColor.backgroundColor,
+            color: chipColor.color
+        } as any),
     cardChipBasic: {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.white.main
@@ -62,8 +63,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const QuestionCard = ({answer, id, level, question}: questionCardModel) => {
-
+const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
     let chipColor;
 
     if (level === 'basic') {
