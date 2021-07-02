@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { questionCardModel } from './model';
+import { theme as themeGlobal } from '../../styles/theme';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -27,10 +28,14 @@ const useStyles = makeStyles((theme) => ({
     cardTitle: {
         color: theme.palette.grey.main
     },
-    cardChip: {
+    cardChipSession: {
         marginTop: '-5px',
         textAlign: 'right'
     },
+    cardChip: chipColor => ({
+        backgroundColor: chipColor.backgroundColor,
+        color: chipColor.color,
+    } as any),
     cardChipBasic: {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.white.main
@@ -52,18 +57,28 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const QuestionCard = ({answer, id, level, question}) => {
-    const classes = useStyles();
+const QuestionCard = ({answer, id, level, question}: questionCardModel) => {
 
-    let color;
+    let chipColor;
 
     if (level === 'basic') {
-        color = 'cardChipBasic';
+        chipColor = {
+            backgroundColor: themeGlobal.palette.primary.main,
+            color: themeGlobal.palette.white.main
+        };
     } else if (level === 'intermediate') {
-        color = 'cardChipIntermediate';
+        chipColor = {
+            backgroundColor: themeGlobal.palette.green.main,
+            color: themeGlobal.palette.white.main
+        };
     } else {
-        color = 'cardChipAdvanced';
+        chipColor = {
+            backgroundColor: themeGlobal.palette.red.main,
+            color: themeGlobal.palette.white.main
+        };
     }
+
+    const classes = useStyles(chipColor);
 
     return (
         <Paper className={classes.card} key={id} elevation={3}>
@@ -73,8 +88,8 @@ const QuestionCard = ({answer, id, level, question}) => {
                         <strong>Question:</strong> {question}
                     </Typography>
                 </Grid>
-                <Grid item xs={4} className={classes.cardChip}>
-                    <Chip label={level} className={classes[color]} />
+                <Grid item xs={4} className={classes.cardChipSession}>
+                    <Chip label={level} className={classes.cardChip} />
                 </Grid>
             </Grid>
             <Grid item xs={12}>
