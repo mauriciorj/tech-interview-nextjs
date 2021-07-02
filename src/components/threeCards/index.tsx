@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         marginTop: '40px',
         marginBottom: '40px',
-        color: theme.palette.grey.main,
+        color: theme.palette.themeGrey.main,
     },
     sessionWrap: {
         flexGrow: 1,

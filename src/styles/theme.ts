@@ -34,14 +34,14 @@ declare module "@material-ui/core/styles/createPalette" {
   interface Palette {
     blue: Palette['primary'],
     white: Palette['primary'],
-    grey: Palette['primary'],
+    themeGrey: Palette['primary'],
     green: Palette['primary'],
     red: Palette['primary'],
   }
   interface PaletteOptions {
     blue: PaletteOptions['primary'],
     white: PaletteOptions['primary'],
-    grey: PaletteOptions['primary'],
+    themeGrey: PaletteOptions['primary'],
     green: PaletteOptions['primary'],
     red: PaletteOptions['primary'],
   }
@@ -63,7 +63,7 @@ export const theme = createMuiTheme({
     white: {
       main: '#FFF',
     },
-    grey: {
+    themeGrey: {
       main: '#6b6b6b',
     },
     green: {
