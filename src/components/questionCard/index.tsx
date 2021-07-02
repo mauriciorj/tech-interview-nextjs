@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex'
     },
     cardTitle: {
-        color: theme.palette.grey.main
+        color: theme.palette.themeGrey.main
     },
     cardChipSession: {
         marginTop: '-5px',
