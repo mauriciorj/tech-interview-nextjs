@@ -13,6 +13,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { questionCardModel } from './model';
 import { theme as themeGlobal } from '../../styles/theme';
 
+interface PropsStyle {
+    backgroundColor: string;
+    color: string;
+}
+
 const useStyles = makeStyles((theme) => ({
     card: {
         marginBottom: '30px',
@@ -32,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '-5px',
         textAlign: 'right'
     },
-    cardChip: chipColor => ({
+    cardChip: (chipColor: PropsStyle) => ({
         backgroundColor: chipColor.backgroundColor,
         color: chipColor.color,
     } as any),
