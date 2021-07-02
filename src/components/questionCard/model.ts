@@ -1,6 +1,6 @@
 export interface questionCardModel {
     answer: string;
-    key: string;
+    id: string;
     level: string;
     question: string;
 }
