@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
+    Box,
+    Button,
     Chip,
     Grid,
     makeStyles,
@@ -23,7 +25,11 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '30px',
         paddingTop: '10px',
         paddingLeft: '10px',
-        paddingRight: '10px'
+        paddingRight: '10px',
+        '&:hover': {
+            boxShadow:
+                '2px 4px 3px 1px rgb(0 0 0 / 20%), 2px 3px 4px 2px rgb(0 0 0 / 14%), 2px 3px 5px 2px rgb(0 0 0 / 12%)'
+        }
     },
     cardHeader: {
         paddingBottom: '5px',
@@ -60,6 +66,33 @@ const useStyles = makeStyles((theme) => ({
         '&:not(:last-child)': {
             borderTop: 0
         }
+    },
+    buttonCardClosed: {
+        backgroundColor: theme.palette.blue.light,
+        color: theme.palette.white.main,
+        '&:hover': {
+            backgroundColor: theme.palette.blue.dark
+        }
+    },
+    buttonCardOpened: {
+        backgroundColor: theme.palette.blue.dark,
+        color: theme.palette.white.main,
+        '&:hover': {
+            backgroundColor: theme.palette.blue.light
+        }
+    },
+    AccordionDetailsSession: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    AccordionDetailsTitle: {
+        width: '100%',
+        marginBottom: '15px',
+        marginLeft: '15px',
+        marginTop: '10px'
+    },
+    AccordionDetailsButton: {
+        width: '100%'
     }
 }));
 
@@ -85,8 +118,18 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
 
     const classes = useStyles(chipColor);
 
+    const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+
+    const handlerAccordion = (event: any, expanded: any) => {
+        setIsAccordionOpen(expanded);
+    };
+
+    const handlerCloseAccordion = () => {
+        setIsAccordionOpen(false);
+    };
+
     return (
-        <Paper className={classes.card} key={id} elevation={3}>
+        <Paper className={classes.card} key={id} elevation={1}>
             <Grid item xs={12} className={classes.cardHeader}>
                 <Grid item xs={8}>
                     <Typography variant="subtitle1" className={classes.cardTitle}>
@@ -98,18 +141,39 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
                 </Grid>
             </Grid>
             <Grid item xs={12}>
-                <Accordion className={classes.Accordion}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header">
-                        <Typography variant="subtitle1">
-                            <strong>Answer</strong>
-                        </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>{answer}</Typography>
-                    </AccordionDetails>
+                <Accordion
+                    className={classes.Accordion}
+                    onChange={(event: any, expanded: any) => handlerAccordion(event, expanded)}
+                    expanded={isAccordionOpen}>
+                    {!isAccordionOpen && (
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header">
+                            {!isAccordionOpen && (
+                                <Button variant="contained" className={classes.buttonCardClosed}>
+                                    See the answer
+                                </Button>
+                            )}
+                        </AccordionSummary>
+                    )}
+                    {isAccordionOpen && (
+                        <AccordionDetails>
+                            <Box className={classes.AccordionDetailsSession}>
+                                <Box className={classes.AccordionDetailsTitle}>
+                                    <Typography>{answer}</Typography>
+                                </Box>
+                                <Box className={classes.AccordionDetailsButton}>
+                                    <Button
+                                        variant="contained"
+                                        className={classes.buttonCardOpened}
+                                        onClick={handlerCloseAccordion}>
+                                        Close the answer
+                                    </Button>
+                                </Box>
+                            </Box>
+                        </AccordionDetails>
+                    )}
                 </Accordion>
             </Grid>
         </Paper>
