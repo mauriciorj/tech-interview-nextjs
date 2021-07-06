@@ -55,10 +55,11 @@ const Questions = () => {
         query: { questionsId }
     } = router;
 
-    const title = questionsId;
-    // if(questionsId){
-    //     title = questionsId.charAt(0).toUpperCase() + questionsId.slice(1);
-    // }
+    let title = questionsId;
+    if (questionsId) {
+        const toString = questionsId.toString();
+        title = toString.charAt(0).toUpperCase() + toString.slice(1);
+    }
 
     const breadCrumb = [
         {
