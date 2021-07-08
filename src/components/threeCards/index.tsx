@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         marginTop: '40px',
         marginBottom: '40px',
-        color: theme.palette.themeGrey.main
+        color: theme.palette.themeGrey.dark
     },
     sessionWrap: {
         flexGrow: 1,
@@ -30,19 +30,19 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
-        marginTop: '20px'
-    },
-    paperext: {
-        width: '100%',
         marginTop: '20px',
-        marginBottom: '20px',
-        textAlign: 'center'
+        color: theme.palette.themeGrey.dark
     },
     avatarCard: {
         height: '70px',
         width: '70px',
         color: theme.palette.white.main,
         backgroundColor: theme.palette.primary.main
+    },
+    cardText: {
+        color: theme.palette.themeGrey.dark,
+        textAlign: 'center',
+        marginTop: '20px'
     }
 }));
 
@@ -63,7 +63,7 @@ const ThreeCards = () => {
                                     <Typography variant="h3">{card.title}</Typography>
                                 </Avatar>
                             </Box>
-                            <Box className={classes.paperext}>
+                            <Box className={classes.cardText}>
                                 <Typography variant="subtitle1">{card.text}</Typography>
                             </Box>
                         </Paper>

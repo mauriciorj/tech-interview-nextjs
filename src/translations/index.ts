@@ -14,7 +14,7 @@ export const translations = {
             card: [
                 {
                     title: '1',
-                    text: 'Select the language / technology you want to study.'
+                    text: 'Select the technology you want to study.'
                 },
                 {
                     title: '2',
@@ -22,7 +22,7 @@ export const translations = {
                 },
                 {
                     title: '3',
-                    text: 'Use filters to find questions to level that you want.'
+                    text: 'Use filters to find questions you want.'
                 }
             ]
         },
