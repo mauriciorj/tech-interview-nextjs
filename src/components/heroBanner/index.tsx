@@ -40,25 +40,33 @@ const HeroBanner = () => {
     }, [count]);
 
     const textBackspace = translations.en.heroBanner.textBackspace.length;
-    const wholeText = translations.en.heroBanner.text.length + translations.en.heroBanner.textafterBackspaceHighlighted.length + translations.en.heroBanner.textafterBackspace.length + 1;
+    const wholeText =
+        translations.en.heroBanner.text.length +
+        translations.en.heroBanner.textafterBackspaceHighlighted.length +
+        translations.en.heroBanner.textafterBackspace.length +
+        1;
 
     return (
         <Grid container item xs={12} className={classes.sessionMainDiv}>
             <Grid item xs={12} sm={12} md={6} className={classes.sessionMainText}>
                 <Typography variant="h4">{translations.en.heroBanner.title}</Typography>
                 <Typography variant="h5" className={classes.subTitle}>
-                        {count ? (
-                            <Typist avgTypingDelay={80} onTypingDone={() => setCount(0)}>
-                                {translations.en.heroBanner.text}{translations.en.heroBanner.textBackspace}
-                                <Typist.Backspace count={textBackspace} delay={800} />
-                                <span className={classes.subTitleBackspace}>{translations.en.heroBanner.textafterBackspaceHighlighted}</span> {translations.en.heroBanner.textafterBackspace}
-                                <Typist.Delay ms={1000} />
-                                <Typist.Backspace count={wholeText} delay={800} />
-                                <Typist.Delay ms={1000} />
-                            </Typist>
-                        ) : (
-                            ""
-                        )}
+                    {count ? (
+                        <Typist avgTypingDelay={80} onTypingDone={() => setCount(0)}>
+                            {translations.en.heroBanner.text}
+                            {translations.en.heroBanner.textBackspace}
+                            <Typist.Backspace count={textBackspace} delay={800} />
+                            <span className={classes.subTitleBackspace}>
+                                {translations.en.heroBanner.textafterBackspaceHighlighted}
+                            </span>{' '}
+                            {translations.en.heroBanner.textafterBackspace}
+                            <Typist.Delay ms={1000} />
+                            <Typist.Backspace count={wholeText} delay={800} />
+                            <Typist.Delay ms={1000} />
+                        </Typist>
+                    ) : (
+                        ''
+                    )}
                 </Typography>
             </Grid>
             <Grid item xs={12} sm={12} md={6} className={classes.sessionMainImg}>
