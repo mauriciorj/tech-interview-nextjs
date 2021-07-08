@@ -4,7 +4,7 @@ export const translations = {
         heroBanner: {
             title: 'Be prepared to get your dream\'s job.',
             text: 'Learn what you ',
-            textBackspace: 'really need.',
+            textBackspace: ' need.',
             textafterBackspaceHighlighted: ' REALLY',
             textafterBackspace: ' need !',
             altText: 'Learn what you really need.',
