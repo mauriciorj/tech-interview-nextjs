@@ -3,7 +3,10 @@ export const translations = {
         logo: 'Tech Interview',
         heroBanner: {
             title: 'Be prepared to get your dream\'s job.',
-            text: 'Learn what you really need.',
+            text: 'Learn what you ',
+            textBackspace: 'really need.',
+            textafterBackspaceHighlighted: ' REALLY',
+            textafterBackspace: ' need !',
             altText: 'Learn what you really need.',
         },
         threeCards: {
