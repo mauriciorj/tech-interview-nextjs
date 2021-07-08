@@ -42,7 +42,9 @@ const Footer = () => {
                 <Grid item md={3} xs={10}>
                     <Typography variant="subtitle1" className={classes.footerTechList}>
                         <strong>{translations.en.footer.contactUs}</strong>{' '}
-                        <a href={"mailto:" + translations.en.footer.contactUsEmail}>{translations.en.footer.contactUsEmail}</a>
+                        <a href={'mailto:' + translations.en.footer.contactUsEmail}>
+                            {translations.en.footer.contactUsEmail}
+                        </a>
                     </Typography>
                 </Grid>
             </Grid>
