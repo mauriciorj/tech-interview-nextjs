@@ -29,8 +29,7 @@ const useStyles = makeStyles((theme) => ({
     formSession: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center'
+        justifyContent: 'center'
     },
     formSubSession: {
         display: 'flex',
