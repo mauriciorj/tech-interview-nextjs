@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         marginTop: '40px'
-    } 
+    }
 }));
 
 const StayTuned = () => {

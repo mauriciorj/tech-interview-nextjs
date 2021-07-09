@@ -1,4 +1,4 @@
-const FormValidation = (value: string | any[], rules: string, min: number, max: number) => {
+const FormValidation = (value: any, rules: string, min: number, max: number) => {
     let check = null;
   
     if (rules === 'awsCode') {
