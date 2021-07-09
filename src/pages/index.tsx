@@ -8,6 +8,7 @@ import HeroBanner from '../components/heroBanner';
 import ThreeCards from '../components/threeCards';
 import StartHere from '../components/startHere';
 import StayTuned from '../components/stayTuned';
+import OurNumbers from '../components/ourNumbers';
 import Footer from '../components/footer';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,17 +27,23 @@ const useStyles = makeStyles((theme) => ({
     ThreeCards: {
         backgroundColor: theme.palette.themeGrey.light,
         display: 'flex',
-        paddingBottom: '30px'
+        paddingBottom: '70px'
     },
     startHere: {
         backgroundColor: theme.palette.primary.main,
         display: 'flex',
-        paddingBottom: '30px'
+        paddingBottom: '70px'
     },
     stayTuned: {
         display: 'flex',
-        marginBottom: '70px',
-        height: '270px'
+        marginTop: '20px',
+        marginBottom: '80px',
+        height: '300px'
+    },
+    ourNumbers: {
+        backgroundColor: theme.palette.themeGrey.light,
+        display: 'flex',
+        paddingBottom: '70px'
     },
     footer: {
         backgroundColor: theme.palette.primary.main,
@@ -93,6 +100,12 @@ export default function Home() {
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <StayTuned />
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} className={classes.ourNumbers}>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={10}>
+                        <OurNumbers />
                     </Grid>
                 </Grid>
                 <Grid item xs={12} className={classes.footer}>
