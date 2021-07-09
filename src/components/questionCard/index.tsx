@@ -15,6 +15,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { questionCardModel } from './model';
 import { theme as themeGlobal } from '../../styles/theme';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 interface PropsStyle {
     backgroundColor: string;
@@ -84,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     },
     AccordionDetailsSession: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     AccordionDetailsTitle: {
         width: '100%',
@@ -93,7 +94,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px'
     },
     AccordionDetailsButton: {
-        width: '100%'
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     }
 }));
 
@@ -160,8 +164,8 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
                     )}
                     {isAccordionOpen && (
                         <Fade in={isAccordionOpen} timeout={600}>
-                            <AccordionDetails>
-                                <Box className={classes.AccordionDetailsSession}>
+                            <AccordionDetails className={classes.AccordionDetailsSession}>
+                                <Box >
                                     <Box className={classes.AccordionDetailsTitle}>
                                         <Typography>{answer}</Typography>
                                     </Box>
@@ -172,6 +176,7 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
                                             onClick={handlerCloseAccordion}>
                                             Close the answer
                                         </Button>
+                                        <ExpandLessIcon onClick={handlerCloseAccordion} />
                                     </Box>
                                 </Box>
                             </AccordionDetails>
