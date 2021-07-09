@@ -28,6 +28,20 @@ export const translations = {
             textafterBackspace: ' need !',
             altText: 'Learn what you really need.',
         },
+        techList: [
+            {
+                title: 'Javascript',
+                order: 1,
+                icon: 'javascript_icon_100_100.webp',
+                link: '/questions/javascript'
+            },
+            {
+                title: 'React',
+                order: 2,
+                icon: 'react_icon_100_100.webp',
+                link: '/questions/react'
+            }
+        ],
         threeCards: {
             title: 'How does Tech Interview work ?',
             card: [
