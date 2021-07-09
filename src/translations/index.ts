@@ -1,22 +1,9 @@
 export const translations = {
     en: {
         logo: 'Tech Interview',
+        contactEmail: 'contact@techinterview.com',
         headerMenu: {
             techTitle: 'Technologies',
-            techList: [
-                {
-                    title: 'Javascript',
-                    order: 1,
-                    icon: 'javascript_icon_100_100.webp',
-                    link: '/questions/javascript'
-                },
-                {
-                    title: 'React',
-                    order: 2,
-                    icon: 'react_icon_100_100.webp',
-                    link: '/questions/react'
-                }
-            ],
             contactUsTitle: 'contact us:',
             contactUsEmail: 'contact@techinterview.com'
         },
