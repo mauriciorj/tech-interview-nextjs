@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     ourNumbersSession: {
         flexGrow: 1,
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     ourNumbersCard: {
         textAlign: 'center',
