@@ -1,6 +1,25 @@
 export const translations = {
     en: {
         logo: 'Tech Interview',
+        headerMenu: {
+            techTitle: 'Technologies',
+            techList: [
+                {
+                    title: 'Javascript',
+                    order: 1,
+                    icon: 'javascript_icon_100_100.webp',
+                    link: '/questions/javascript'
+                },
+                {
+                    title: 'React',
+                    order: 2,
+                    icon: 'react_icon_100_100.webp',
+                    link: '/questions/react'
+                }
+            ],
+            contactUsTitle: 'contact us:',
+            contactUsEmail: 'contact@techinterview.com'
+        },
         heroBanner: {
             title: 'Be prepared to get your dream\'s job.',
             text: 'Learn what you ',
@@ -27,7 +46,7 @@ export const translations = {
             ]
         },
         footer: {
-            techList: 'Languages',
+            techList: 'Technologies',
             contactUs: 'contact us:',
             contactUsEmail: 'contact@techinterview.com'
         }
