@@ -2,6 +2,7 @@ import React from 'react';
 import { translations } from '../../translations';
 import {
     AppBar,
+    Box,
     IconButton,
     Menu,
     MenuItem,
@@ -13,6 +14,9 @@ import {
 import { useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+import Image from 'next/image';
+import reactIcon from '../../assets/img/icons/react_icon_100_100.webp';
+import javascriptIcon from '../../assets/img/icons/javascript_icon_100_100.webp';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +37,13 @@ const useStyles = makeStyles((theme) => ({
     },
     menu: {
         marginTop: '40px'
+    },
+    menuIcon: {
+        marginRight: '10px',
+        marginTop: '5px'
+    },
+    menuContactUs: {
+        marginTop: '15px'
     }
 }));
 
@@ -57,10 +68,10 @@ const Header = () => {
     const menuId = 'primary-search-account-menu';
 
     const {
-        en: { logo }
+        en: { logo, headerMenu }
     } = translations;
 
-    const renderMenu = (
+    const renderMenuDesktop = (
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -71,8 +82,17 @@ const Header = () => {
             onClose={handleMenuClose}
             className={classes.menu}
             disableScrollLock={true}>
-            <MenuItem>Javascript</MenuItem>
-            <MenuItem>React</MenuItem>
+            <MenuItem><strong>{headerMenu.techTitle}</strong></MenuItem>
+            {headerMenu.techList.map((tech, index) => (
+                <MenuItem key={`tech-${index}`}>
+                    <Box className={classes.menuIcon}>
+                        <Image src={`/icons/${tech.icon}`} alt={tech.title} width={25} height={25} />
+                    </Box>
+                    {tech.title}
+                </MenuItem>
+            ))}
+            <MenuItem className={classes.menuContactUs}><strong>{headerMenu.contactUsTitle}</strong></MenuItem>
+            <MenuItem><a href={"mailto:" + headerMenu.contactUsEmail}>{headerMenu.contactUsEmail}</a></MenuItem>
         </Menu>
     );
 
@@ -100,7 +120,7 @@ const Header = () => {
                     </Grid>
                 </Toolbar>
             </AppBar>
-            {renderMenu}
+            {renderMenuDesktop}
         </div>
     );
 };
