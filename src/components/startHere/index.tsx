@@ -30,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
 const StartHere = () => {
     const classes = useStyles();
 
-    const { en: { techList } } = translations;
+    const {
+        en: { techList }
+    } = translations;
 
     return (
         <>
