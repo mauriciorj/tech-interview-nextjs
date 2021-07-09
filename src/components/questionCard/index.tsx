@@ -7,6 +7,7 @@ import {
     Button,
     Chip,
     Grid,
+    Fade,
     makeStyles,
     Paper,
     Typography
@@ -158,21 +159,23 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
                         </AccordionSummary>
                     )}
                     {isAccordionOpen && (
-                        <AccordionDetails>
-                            <Box className={classes.AccordionDetailsSession}>
-                                <Box className={classes.AccordionDetailsTitle}>
-                                    <Typography>{answer}</Typography>
+                        <Fade in={isAccordionOpen} timeout={600}>
+                            <AccordionDetails>
+                                <Box className={classes.AccordionDetailsSession}>
+                                    <Box className={classes.AccordionDetailsTitle}>
+                                        <Typography>{answer}</Typography>
+                                    </Box>
+                                    <Box className={classes.AccordionDetailsButton}>
+                                        <Button
+                                            variant="contained"
+                                            className={classes.buttonCardOpened}
+                                            onClick={handlerCloseAccordion}>
+                                            Close the answer
+                                        </Button>
+                                    </Box>
                                 </Box>
-                                <Box className={classes.AccordionDetailsButton}>
-                                    <Button
-                                        variant="contained"
-                                        className={classes.buttonCardOpened}
-                                        onClick={handlerCloseAccordion}>
-                                        Close the answer
-                                    </Button>
-                                </Box>
-                            </Box>
-                        </AccordionDetails>
+                            </AccordionDetails>
+                        </Fade>
                     )}
                 </Accordion>
             </Grid>
