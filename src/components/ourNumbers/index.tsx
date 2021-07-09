@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center'
     },
     ourNumbersCard: {
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: '20px'
+        }
     },
     ourNumberNumbers: {
         color: theme.palette.primary.main,
