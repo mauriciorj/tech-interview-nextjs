@@ -29,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '40px',
         marginBottom: '50px'
     },
+    breadCrumbs: {
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: '20px'
+        }
+    },
     title: {
         marginTop: '30px',
         marginLeft: '20px',
@@ -39,7 +44,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '40px',
         marginLeft: '20px',
         marginBottom: '20px',
-        width: '100%'
+        width: '100%',
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: '20px',
+            paddingRight: '10px'
+        }
     }
 }));
 
@@ -94,13 +103,15 @@ const Questions = () => {
                     </Grid>
                 </Grid>
                 <Grid container item xs={12} className={classes.sessionMainDiv}>
-                    <Grid item xs={1}></Grid>
-                    <Grid item xs={10}>
-                        <BreadCrumbs breadCrumbInfo={breadCrumb} />
+                    <Grid item xs={12} sm={1} md={1}></Grid>
+                    <Grid item xs={11} sm={10}>
+                        <Box className={classes.breadCrumbs}>
+                            <BreadCrumbs breadCrumbInfo={breadCrumb} />
+                        </Box>
                         <Box className={classes.title}>
                             <Typography variant="h4">{title}</Typography>
                         </Box>
-                        <Grid item xs={10} className={classes.cardSession}>
+                        <Grid item xs={12} md={12} className={classes.cardSession}>
                             {getQUestions.map((item) => (
                                 <QuestionCard
                                     answer={item.answer}

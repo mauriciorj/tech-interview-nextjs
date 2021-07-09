@@ -21,8 +21,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.main,
         display: 'flex'
     },
-    mainDiv: {
-        display: 'flex'
+    heroBanner: {
+        display: 'flex',
+        maxHeight: '500px'
     },
     ThreeCards: {
         backgroundColor: theme.palette.themeGrey.light,
@@ -78,7 +79,7 @@ export default function Home() {
                         <Header />
                     </Grid>
                 </Grid>
-                <Grid item xs={12} className={classes.mainDiv}>
+                <Grid item xs={12} className={classes.heroBanner}>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <HeroBanner />

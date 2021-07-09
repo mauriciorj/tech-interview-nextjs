@@ -48,13 +48,17 @@ const useStyles = makeStyles((theme) => ({
 const ThreeCards = () => {
     const classes = useStyles();
 
+    const {
+        en: { threeCards }
+    } = translations;
+
     return (
         <>
             <Box className={classes.sessionTitle}>
-                <Typography variant="h4">{translations.en.threeCards.title}</Typography>
+                <Typography variant="h4">{threeCards.title}</Typography>
             </Box>
             <Grid container item laptop={12} xs={12} spacing={2} className={classes.sessionWrap}>
-                {translations.en.threeCards.card.map((card, index) => (
+                {threeCards.card.map((card, index) => (
                     <Grid item md={3} xs={10} key={`cardKey-${index}`}>
                         <Paper elevation={3} className={classes.paper}>
                             <Box className={classes.paperTitle}>

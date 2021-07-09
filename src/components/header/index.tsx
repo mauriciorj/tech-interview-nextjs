@@ -15,6 +15,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,7 +67,7 @@ const Header = () => {
     const menuId = 'primary-search-account-menu';
 
     const {
-        en: { logo, headerMenu }
+        en: { logo, headerMenu, techList }
     } = translations;
 
     const renderMenuDesktop = (
@@ -83,7 +84,7 @@ const Header = () => {
             <MenuItem>
                 <strong>{headerMenu.techTitle}</strong>
             </MenuItem>
-            {headerMenu.techList.map((tech, index) => (
+            {techList.map((tech, index) => (
                 <MenuItem key={`tech-${index}`}>
                     <Box className={classes.menuIcon}>
                         <Image
@@ -93,7 +94,9 @@ const Header = () => {
                             height={25}
                         />
                     </Box>
-                    {tech.title}
+                    <Link href={tech.link}>
+                        <a>{tech.title}</a>
+                    </Link>
                 </MenuItem>
             ))}
             <MenuItem className={classes.menuContactUs}>
@@ -110,7 +113,11 @@ const Header = () => {
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar className={classes.innerHeader}>
                     <Grid item xs={6}>
-                        <Typography variant="h6">{logo}</Typography>
+                        <Link href="/">
+                            <a>
+                                <Typography variant="h6">{logo}</Typography>
+                            </a>
+                        </Link>
                     </Grid>
                     <Grid item xs={6} className={classes.menuArea}>
                         {!matches ? (
