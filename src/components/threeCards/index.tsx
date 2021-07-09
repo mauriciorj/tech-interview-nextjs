@@ -1,7 +1,6 @@
 import React from 'react';
 import { Avatar, Box, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
 import { translations } from '../../translations';
-import { theme as themeGlobal } from '../../styles/theme';
 
 interface PropsStyle {
     backgroundColor: string;

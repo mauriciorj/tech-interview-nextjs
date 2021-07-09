@@ -15,8 +15,6 @@ import { useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import Image from 'next/image';
-import reactIcon from '../../assets/img/icons/react_icon_100_100.webp';
-import javascriptIcon from '../../assets/img/icons/javascript_icon_100_100.webp';
 
 const useStyles = makeStyles((theme) => ({
     root: {

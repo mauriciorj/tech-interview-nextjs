@@ -59,6 +59,14 @@ export const translations = {
                 }
             ]
         },
+        stayTuned: {
+            title: 'Didn\'t find what you were looking for?',
+            subTitle: 'Stay tuned !',
+            inputFieldText: 'your email',
+            inputError: 'Please insert a valid email',
+            buttonLabel: 'Subscribe',
+            formSent: 'Thank you and welcome to our world :)'
+        },
         footer: {
             techList: 'Technologies',
             contactUs: 'contact us:',
