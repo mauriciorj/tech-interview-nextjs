@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     },
     AccordionDetailsSession: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column'
     },
     AccordionDetailsTitle: {
         width: '100%',
@@ -162,26 +162,28 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
                             )}
                         </AccordionSummary>
                     )}
-                    {isAccordionOpen && (
-                        <Fade in={isAccordionOpen} timeout={600}>
-                            <AccordionDetails className={classes.AccordionDetailsSession}>
-                                <Box >
-                                    <Box className={classes.AccordionDetailsTitle}>
-                                        <Typography>{answer}</Typography>
-                                    </Box>
-                                    <Box className={classes.AccordionDetailsButton}>
-                                        <Button
-                                            variant="contained"
-                                            className={classes.buttonCardOpened}
-                                            onClick={handlerCloseAccordion}>
-                                            Close the answer
-                                        </Button>
-                                        <ExpandLessIcon onClick={handlerCloseAccordion} />
-                                    </Box>
+                    <Fade in={isAccordionOpen} timeout={600}>
+                        <AccordionDetails className={classes.AccordionDetailsSession}>
+                            <Box>
+                                <Box className={classes.AccordionDetailsTitle}>
+                                    <Typography>{answer}</Typography>
                                 </Box>
-                            </AccordionDetails>
-                        </Fade>
-                    )}
+                                <Box className={classes.AccordionDetailsButton}>
+                                    {isAccordionOpen && (
+                                        <>
+                                            <Button
+                                                variant="contained"
+                                                className={classes.buttonCardOpened}
+                                                onClick={handlerCloseAccordion}>
+                                                Close the answer
+                                            </Button>
+                                            <ExpandLessIcon onClick={handlerCloseAccordion} />
+                                        </>
+                                    )}
+                                </Box>
+                            </Box>
+                        </AccordionDetails>
+                    </Fade>
                 </Accordion>
             </Grid>
         </Paper>
