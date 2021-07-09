@@ -4,8 +4,9 @@ import { Grid } from '@material-ui/core';
 import { translations } from '../translations';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../components/header';
-import ThreeCards from '../components/threeCards';
 import HeroBanner from '../components/heroBanner';
+import ThreeCards from '../components/threeCards';
+import StartHere from '../components/startHere';
 import Footer from '../components/footer';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
     },
     ThreeCards: {
         backgroundColor: theme.palette.themeGrey.light,
+        display: 'flex',
+        paddingBottom: '30px'
+    },
+    startHere: {
+        backgroundColor: theme.palette.primary.main,
         display: 'flex',
         paddingBottom: '30px'
     },
@@ -69,6 +75,12 @@ export default function Home() {
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <ThreeCards />
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} className={classes.startHere}>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={10}>
+                        <StartHere />
                     </Grid>
                 </Grid>
                 <Grid item xs={12} className={classes.footer}>

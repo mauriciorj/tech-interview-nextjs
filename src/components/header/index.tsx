@@ -82,17 +82,28 @@ const Header = () => {
             onClose={handleMenuClose}
             className={classes.menu}
             disableScrollLock={true}>
-            <MenuItem><strong>{headerMenu.techTitle}</strong></MenuItem>
+            <MenuItem>
+                <strong>{headerMenu.techTitle}</strong>
+            </MenuItem>
             {headerMenu.techList.map((tech, index) => (
                 <MenuItem key={`tech-${index}`}>
                     <Box className={classes.menuIcon}>
-                        <Image src={`/icons/${tech.icon}`} alt={tech.title} width={25} height={25} />
+                        <Image
+                            src={`/icons/${tech.icon}`}
+                            alt={tech.title}
+                            width={25}
+                            height={25}
+                        />
                     </Box>
                     {tech.title}
                 </MenuItem>
             ))}
-            <MenuItem className={classes.menuContactUs}><strong>{headerMenu.contactUsTitle}</strong></MenuItem>
-            <MenuItem><a href={"mailto:" + headerMenu.contactUsEmail}>{headerMenu.contactUsEmail}</a></MenuItem>
+            <MenuItem className={classes.menuContactUs}>
+                <strong>{headerMenu.contactUsTitle}</strong>
+            </MenuItem>
+            <MenuItem>
+                <a href={'mailto:' + headerMenu.contactUsEmail}>{headerMenu.contactUsEmail}</a>
+            </MenuItem>
         </Menu>
     );
 
