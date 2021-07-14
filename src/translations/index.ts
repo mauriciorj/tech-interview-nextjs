@@ -4,8 +4,8 @@ export const translations = {
         contactEmail: 'contact@techinterview.com',
         headerMenu: {
             techTitle: 'Technologies',
+            menuTitle: 'Menu',
             contactUsTitle: 'contact us:',
-            contactUsEmail: 'contact@techinterview.com'
         },
         heroBanner: {
             title: "Be prepared to get your dream's job.",
@@ -77,7 +77,6 @@ export const translations = {
         footer: {
             techList: 'Technologies',
             contactUs: 'contact us:',
-            contactUsEmail: 'contact@techinterview.com'
         }
     }
 };
