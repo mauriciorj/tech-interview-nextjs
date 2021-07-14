@@ -184,7 +184,7 @@ const Header = () => {
                         <Grid className={classes.mobileMenuContactUs}>
                             <strong>{headerMenu.contactUsTitle}</strong>
                             <Typography variant="subtitle1">
-                                <a href={'mailto:' + headerMenu.contactUsEmail}>{contactEmail}</a>
+                                <a href={'mailto:' + contactEmail}>{contactEmail}</a>
                             </Typography>
                         </Grid>
                     </Grid>
