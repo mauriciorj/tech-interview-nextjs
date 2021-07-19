@@ -70,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         marginTop: '40px'
+    },
+    emoji: {
+        fontSize: '2rem',
+        paddingRight: '10px'
     }
 }));
 
@@ -85,15 +89,39 @@ const StayTuned = () => {
         en: { stayTuned }
     } = translations;
 
-    const submitHanlder = () => {
+    const submitHanlder = async (e: { preventDefault: () => void }) => {
+        e.preventDefault();
         setIsLoading(true);
         const isValid = FormValidation(formInput, 'email', 2, 50);
         if (!isValid) {
-            setFormError(true);
+            setIsLoading(false);
+            return setFormError(true);
+        }
+        const res = await fetch('/api/subscribe', {
+            body: JSON.stringify({
+                email: formInput
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST'
+        });
+        if (res.status !== 200) {
+            return setFormError(true);
         }
         setIsFormSent(true);
-        setIsLoading(false);
+        return setIsLoading(false);
     };
+
+    const Emoji = (props: any) => (
+        <span
+            role="img"
+            className={classes.emoji}
+            aria-label={props.label ? props.label : ''}
+            aria-hidden={props.label ? 'false' : 'true'}>
+            {props.symbol}
+        </span>
+    );
 
     return (
         <>
@@ -108,7 +136,11 @@ const StayTuned = () => {
             <Grid item xs={12} className={classes.formSession}>
                 {!isFormSent ? (
                     <Grid item xs={12} md={6} className={classes.formSubSession}>
-                        <form noValidate autoComplete="off" className={classes.form}>
+                        <form
+                            noValidate
+                            autoComplete="off"
+                            className={classes.form}
+                            onSubmit={submitHanlder}>
                             <TextField
                                 id="stayTuned"
                                 label={stayTuned.inputFieldText}
@@ -142,7 +174,9 @@ const StayTuned = () => {
                 ) : (
                     <Fade in={true} timeout={700}>
                         <Grid item xs={12} md={6} className={classes.formSent}>
-                            <Typography variant="h6">{stayTuned.formSent}</Typography>
+                            <Typography variant="h6">
+                                <Emoji symbol="🎉" /> {stayTuned.formSent}
+                            </Typography>
                         </Grid>
                     </Fade>
                 )}
