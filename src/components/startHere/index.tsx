@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Grid, makeStyles, Typography } from '@material-ui/core';
 import { translations } from '../../translations';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
     sessionTitle: {
@@ -43,15 +44,23 @@ const StartHere = () => {
                 {techList.map((tech, index) => (
                     <Grid key={`tech-${index}`} className={classes.techBox}>
                         <Box>
-                            <Image
-                                src={`/icons/${tech.icon}`}
-                                alt={tech.title}
-                                width={50}
-                                height={50}
-                            />
+                            <Link href={tech.link}>
+                                <a>
+                                    <Image
+                                        src={`/icons/${tech.icon}`}
+                                        alt={tech.title}
+                                        width={50}
+                                        height={50}
+                                    />
+                                </a>
+                            </Link>
                         </Box>
                         <Box className={classes.techTitle}>
-                            <Typography variant="h6">{tech.title}</Typography>
+                            <Link href={tech.link}>
+                                <a>
+                                    <Typography variant="h6">{tech.title}</Typography>
+                                </a>
+                            </Link>
                         </Box>
                     </Grid>
                 ))}
