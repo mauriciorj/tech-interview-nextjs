@@ -86,7 +86,7 @@ const Questions = () => {
         setIsMounted(true);
     }, []);
 
-    const getQUestions = questionsDb.en.filter((item) => item.tech === questionsId);
+    const getQuestions = questionsDb.en.javascript; // TODO: change it to SSR nextjs method
 
     return isMounted ? (
         <div className={classes.root}>
@@ -112,7 +112,7 @@ const Questions = () => {
                             <Typography variant="h4">{title}</Typography>
                         </Box>
                         <Grid item xs={12} md={12} className={classes.cardSession}>
-                            {getQUestions.map((item) => (
+                            {getQuestions.map((item: any) => (
                                 <QuestionCard
                                     answer={item.answer}
                                     key={item.id}
