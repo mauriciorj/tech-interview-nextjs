@@ -16,6 +16,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { questionCardModel } from './model';
 import { theme as themeGlobal } from '../../styles/theme';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ReactHtmlParser, { processNodes } from 'react-html-parser';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 interface PropsStyle {
     backgroundColor: string;
@@ -39,7 +42,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex'
     },
     cardTitle: {
-        color: theme.palette.themeGrey.main
+        '& code:*': {
+            background: theme.palette.themeGrey.dark,
+            borderRadius: '3px',
+            padding: '3px'
+        }
     },
     cardChipSession: {
         marginTop: '-5px',
@@ -90,8 +97,16 @@ const useStyles = makeStyles((theme) => ({
     AccordionDetailsTitle: {
         width: '100%',
         marginBottom: '15px',
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: '0px',
+            marginTop: '0px'
+        },
         marginLeft: '15px',
-        marginTop: '10px'
+        marginTop: '10px',
+        '& pre:*': {
+            margin: '0px',
+            padding: '0px'
+        }
     },
     AccordionDetailsButton: {
         display: 'flex',
@@ -133,13 +148,29 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
         setIsAccordionOpen(false);
     };
 
+    function transform(node: { type: string; name: string; children: any[] }, index: any) {
+        if (node.type === 'tag' && node.name === 'code') {
+            return (
+                <SyntaxHighlighter
+                    language="javascript"
+                    style={atomOneDark}
+                    wrapLines={true}
+                    wrapLongLines={true}>
+                    {processNodes(node.children, transform)}
+                </SyntaxHighlighter>
+            );
+        }
+    }
+
+    const options = {
+        transform
+    };
+
     return (
         <Paper className={classes.card} key={id} elevation={1}>
             <Grid item xs={12} className={classes.cardHeader}>
-                <Grid item xs={8}>
-                    <Typography variant="subtitle1" className={classes.cardTitle}>
-                        <strong>Question:</strong> {question}
-                    </Typography>
+                <Grid item xs={8} className={classes.cardTitle}>
+                    <strong>Question:</strong> {ReactHtmlParser(question)}
                 </Grid>
                 <Grid item xs={4} className={classes.cardChipSession}>
                     <Chip label={level} className={classes.cardChip} />
@@ -166,7 +197,7 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
                         <AccordionDetails className={classes.AccordionDetailsSession}>
                             <Box>
                                 <Box className={classes.AccordionDetailsTitle}>
-                                    <Typography>{answer}</Typography>
+                                    <Typography>{ReactHtmlParser(answer, options)}</Typography>
                                 </Box>
                                 <Box className={classes.AccordionDetailsButton}>
                                     {isAccordionOpen && (
