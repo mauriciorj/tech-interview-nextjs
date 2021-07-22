@@ -18,7 +18,7 @@ import { theme as themeGlobal } from '../../styles/theme';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ReactHtmlParser, { processNodes } from 'react-html-parser';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 interface PropsStyle {
     backgroundColor: string;

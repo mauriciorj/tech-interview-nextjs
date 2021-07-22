@@ -10,7 +10,6 @@ import StartHere from '../components/startHere';
 import StayTuned from '../components/stayTuned';
 import OurNumbers from '../components/ourNumbers';
 import Footer from '../components/footer';
-import { GetServerSideProps } from 'next';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
@@ -55,16 +54,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    return {
-        props: {
-            data: [1, 2, 3, 5]
-        }
-    };
-};
-
-export default function Home({ data }: any) {
-    console.log(data);
+export default function Home() {
     const classes = useStyles();
 
     const {

@@ -8,6 +8,7 @@ import QuestionCard from '../../components/questionCard';
 import BreadCrumbs from '../../components/breadCrumbs';
 import { translations } from '../../translations';
 import { questionsDb } from '../../db/questionsDb';
+import { GetServerSideProps } from 'next';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Questions = () => {
+const Questions = ({ data }: any) => {
     const classes = useStyles();
     const router = useRouter();
 
@@ -86,7 +87,7 @@ const Questions = () => {
         setIsMounted(true);
     }, []);
 
-    const getQuestions = questionsDb.en.javascript; // TODO: change it to SSR nextjs method
+    const getQuestions = data;
 
     return isMounted ? (
         <div className={classes.root}>
@@ -133,6 +134,22 @@ const Questions = () => {
             </Grid>
         </div>
     ) : null; // TODO: create a pre loading skeleton
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { id } = context.query;
+    let data;
+
+    switch (id as string) {
+        case 'javascript':
+            data = questionsDb.en.javascript;
+            break;
+        case 'react':
+            data = questionsDb.en.react;
+            break;
+    }
+
+    return { props: { data } };
 };
 
 export default Questions;

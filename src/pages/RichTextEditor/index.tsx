@@ -6,7 +6,7 @@ const Editor = dynamic<any>(() => import('react-draft-wysiwyg').then((mod) => mo
     ssr: false
 });
 
-const ControlledEditor = () => {
+const ControlledEditor: React.FC = () => {
     const [editorStateControl, setEditorStateControl] = useState<any>({
         editorState: EditorState.createEmpty()
     });
