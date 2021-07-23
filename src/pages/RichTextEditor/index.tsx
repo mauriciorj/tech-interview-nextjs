@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import dynamic from 'next/dynamic';
+
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 const Editor = dynamic<any>(() => import('react-draft-wysiwyg').then((mod) => mod.Editor), {
     ssr: false
 });
@@ -11,6 +13,7 @@ const ControlledEditor: React.FC = () => {
         editorState: EditorState.createEmpty()
     });
 
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
     const onEditorStateChange = (editorState: any) => {
         setEditorStateControl({
             editorState

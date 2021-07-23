@@ -1,10 +1,14 @@
 import React from 'react';
 import { Breadcrumbs, Link, Typography } from '@material-ui/core';
 
-const BreadCrumbs = ({ breadCrumbInfo }: any) => {
+export interface Props {
+    breadCrumbInfo: { link?: string; title?: string }[];
+}
+
+const BreadCrumbs: React.FC<Props> = ({ breadCrumbInfo }) => {
     return (
         <Breadcrumbs aria-label="breadcrumb">
-            {breadCrumbInfo.map((item: { link: any; title: string | null }) =>
+            {breadCrumbInfo.map((item) =>
                 item.link ? (
                     <Link color="inherit" href="/" key={item.title}>
                         {item.title}

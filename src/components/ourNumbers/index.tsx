@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const OurNumbers = () => {
+const OurNumbers: React.FC = () => {
     const classes = useStyles();
 
     const {
