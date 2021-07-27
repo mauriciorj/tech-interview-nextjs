@@ -18,6 +18,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ReactHtmlParser, { processNodes } from 'react-html-parser';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { v4 as uuidv4 } from 'uuid';
 
 interface PropsStyle {
     backgroundColor: string;
@@ -146,8 +147,8 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
     const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
     /* eslint-disable  @typescript-eslint/no-explicit-any */
-    const handlerAccordion = (expanded: any) => {
-        setIsAccordionOpen(expanded);
+    const handlerAccordion = () => {
+        setIsAccordionOpen(true);
     };
 
     const handlerCloseAccordion = () => {
@@ -155,14 +156,14 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
     };
 
     function transform(node: { type: string; name: string; children: HTMLElement[] }) {
-        //console.log(node)
         if (node.type === 'tag' && node.name === 'code') {
             return (
                 <SyntaxHighlighter
                     language="javascript"
                     style={atomOneDark}
                     wrapLines={true}
-                    wrapLongLines={true}>
+                    wrapLongLines={true}
+                    key={`${uuidv4()}`}>
                     {processNodes(node.children, transform)}
                 </SyntaxHighlighter>
             );
@@ -170,6 +171,7 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
     }
 
     const options = {
+        decodeEntities: true,
         transform
     };
 
@@ -186,7 +188,7 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
             <Grid item xs={12}>
                 <Accordion
                     className={classes.Accordion}
-                    onChange={(expanded) => handlerAccordion(expanded)}
+                    onChange={handlerAccordion}
                     expanded={isAccordionOpen}>
                     {!isAccordionOpen && (
                         <AccordionSummary
@@ -200,11 +202,11 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
                             )}
                         </AccordionSummary>
                     )}
-                    <Fade in={isAccordionOpen} timeout={600}>
+                    <Fade in={true} timeout={600}>
                         <AccordionDetails className={classes.AccordionDetailsSession}>
                             <Box>
                                 <Box className={classes.AccordionDetailsTitle}>
-                                    <Typography>{ReactHtmlParser(answer, options)}</Typography>
+                                    {ReactHtmlParser(answer, options)}
                                 </Box>
                                 <Box className={classes.AccordionDetailsButton}>
                                     {isAccordionOpen && (
