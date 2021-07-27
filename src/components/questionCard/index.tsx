@@ -206,7 +206,9 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
                         <AccordionDetails className={classes.AccordionDetailsSession}>
                             <Box>
                                 <Box className={classes.AccordionDetailsTitle}>
-                                    {ReactHtmlParser(answer, options)}
+                                    <Typography component={'span'}>
+                                        {ReactHtmlParser(answer, options)}
+                                    </Typography>
                                 </Box>
                                 <Box className={classes.AccordionDetailsButton}>
                                     {isAccordionOpen && (

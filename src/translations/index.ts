@@ -1,6 +1,13 @@
 export const translations = {
     en: {
         logo: 'Tech Interview',
+        title: 'Tech Interview',
+        description: 'We help you to be prepare to get your dream\'s job!',
+        keywords: 'Interview, Tech Interview, Tech Interview Questions, Technical Interview, Technical Interview Questions, Algorithm, Code challenge, Javascript, React',
+        og_site_name: 'home-techinterview',
+        og_locale: 'en_US',
+        og_type: 'website',
+        og_url: 'http://www.myUrl.com/',
         contactEmail: 'contact@techinterview.com',
         headerMenu: {
             techTitle: 'Technologies',
@@ -20,12 +27,14 @@ export const translations = {
                 title: 'Javascript',
                 order: 1,
                 icon: 'javascript_icon_100_100.webp',
+                description: 'The best Javascript questions to help you to be prepared for your next interview',
                 link: '/questions/javascript'
             },
             {
                 title: 'React',
                 order: 2,
                 icon: 'react_icon_100_100.webp',
+                description: 'The best React questions to help you to be prepared for your next interview',
                 link: '/questions/react'
             }
         ],
