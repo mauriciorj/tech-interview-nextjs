@@ -76,7 +76,7 @@ const Questions: React.FC<Props> = ({ data }) => {
     const router = useRouter();
 
     const {
-        en: { keywords, og_site_name, og_locale, og_type, og_url, techList }
+        en: { og_url, techList }
     } = translations;
 
     const {
@@ -112,16 +112,9 @@ const Questions: React.FC<Props> = ({ data }) => {
         <div className={classes.root}>
             <Grid container item xs={12}>
                 <Head>
-                    <title>{title}</title>
-                    <meta charSet="utf-8" />
+                    <title>{title} Questions</title>
                     <meta name="description" content={getDescription?.description} />
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                    <meta name="keywords" content={keywords} />
-                    <meta property="og:site_name" content={og_site_name} />
-                    <meta property="og:locale" content={og_locale} />
-                    <meta property="og:type" content={og_type} />
                     <meta property="og:url" content={`${og_url}questions/${id}`} />
-                    <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <Grid item xs={12} className={classes.header}>
                     <Grid item xs={1}></Grid>

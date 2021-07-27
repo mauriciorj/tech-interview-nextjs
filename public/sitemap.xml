@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+<url>
+  <loc>https://tech-interview.vercel.app/</loc>
+  <image:image>
+      <image:loc>https://tech-interview.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fimage%2Fsrc%2Fassets%2Fimg%2Finterview.278723173501f71cbc2a7f6578adad75.webp&w=1080&q=75</image:loc>
+      <image:caption>Learn what you really need.</image:caption>
+      <image:title>Learn what you really need.</image:title>
+    </image:image>
+  <lastmod>2021-07-27T14:20:50+00:00</lastmod>
+</url>
+<url>
+  <loc>https://tech-interview.vercel.app/questions/javascript</loc>
+  <lastmod>2021-07-27T14:20:50+00:00</lastmod>
+</url>
+<url>
+  <loc>https://tech-interview.vercel.app/questions/react</loc>
+  <lastmod>2021-07-27T14:20:50+00:00</lastmod>
+</url>
+
+</urlset>

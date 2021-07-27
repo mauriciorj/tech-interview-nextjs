@@ -1,0 +1,16 @@
+{
+    "name": "Tech Interview",
+    "short_name": "Tech Interview",
+    "theme_color": "#0063c9",
+    "background_color": "#ffffff",
+    "display": "browser",
+    "orientation": "portrait",
+    "start_url": "/",
+    "icons": [
+        {
+          "src": "/logo.png",
+          "type": "image/png",
+          "sizes": "146x33"
+        }
+    ]
+  }
