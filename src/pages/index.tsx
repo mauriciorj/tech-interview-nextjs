@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
 import { Grid } from '@material-ui/core';
-import { translations } from '../translations';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../components/header';
 import HeroBanner from '../components/heroBanner';
@@ -57,10 +55,6 @@ const useStyles = makeStyles((theme) => ({
 const Home: React.FC = () => {
     const classes = useStyles();
 
-    const {
-        en: { title, description, keywords, og_site_name, og_locale, og_type, og_url }
-    } = translations;
-
     const [isMounted, setIsMounted] = useState<boolean>(false);
 
     useEffect(() => {
@@ -71,18 +65,6 @@ const Home: React.FC = () => {
     return isMounted ? (
         <div className={classes.root}>
             <Grid container item xs={12}>
-                <Head>
-                    <title>{title}</title>
-                    <meta charSet="utf-8" />
-                    <meta name="description" content={description} />
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                    <meta name="keywords" content={keywords} />
-                    <meta property="og:site_name" content={og_site_name} />
-                    <meta property="og:locale" content={og_locale} />
-                    <meta property="og:type" content={og_type} />
-                    <meta property="og:url" content={og_url} />
-                    <link rel="icon" href="/favicon.ico" />
-                </Head>
                 <Grid item xs={12} className={classes.header} data-aos="fade">
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
