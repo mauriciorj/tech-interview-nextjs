@@ -103,11 +103,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Header = () => {
+const Header: React.FC = () => {
     const classes = useStyles();
 
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<true | false>(false);
 
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('sm'));
@@ -118,8 +118,8 @@ const Header = () => {
         setAnchorEl(null);
     };
 
-    const handleDesktopMenuOpen = (event: any) => {
-        setAnchorEl(event.currentTarget);
+    const handleDesktopMenuOpen = (event: HTMLElement | null) => {
+        setAnchorEl(event);
     };
 
     const handleMobileMenuClose = () => {
@@ -265,7 +265,7 @@ const Header = () => {
                             <Box className={classes.menuDesktopIcon}>
                                 <Button
                                     endIcon={<MenuIcon />}
-                                    onClick={handleDesktopMenuOpen}
+                                    onClick={(event) => handleDesktopMenuOpen(event.currentTarget)}
                                     className={classes.menuButton}>
                                     {headerMenu.menuTitle}
                                 </Button>

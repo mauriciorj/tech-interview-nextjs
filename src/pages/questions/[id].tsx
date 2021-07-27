@@ -53,7 +53,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Questions = ({ data }: any) => {
+export interface Props {
+    data: {
+        answer: string;
+        id: string;
+        level: string;
+        question: string;
+    }[];
+}
+
+const Questions: React.FC<Props> = ({ data }) => {
     const classes = useStyles();
     const router = useRouter();
 
@@ -113,15 +122,22 @@ const Questions = ({ data }: any) => {
                             <Typography variant="h4">{title}</Typography>
                         </Box>
                         <Grid item xs={12} md={12} className={classes.cardSession}>
-                            {getQuestions.map((item: any) => (
-                                <QuestionCard
-                                    answer={item.answer}
-                                    key={item.id}
-                                    id={item.id}
-                                    level={item.level}
-                                    question={item.question}
-                                />
-                            ))}
+                            {getQuestions.map(
+                                (item: {
+                                    answer: string;
+                                    id: string;
+                                    level: string;
+                                    question: string;
+                                }) => (
+                                    <QuestionCard
+                                        answer={item.answer}
+                                        key={item.id}
+                                        id={item.id}
+                                        level={item.level}
+                                        question={item.question}
+                                    />
+                                )
+                            )}
                         </Grid>
                     </Grid>
                 </Grid>

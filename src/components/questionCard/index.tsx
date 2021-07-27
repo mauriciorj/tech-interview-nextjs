@@ -13,12 +13,12 @@ import {
     Typography
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { questionCardModel } from './model';
 import { theme as themeGlobal } from '../../styles/theme';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ReactHtmlParser, { processNodes } from 'react-html-parser';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { v4 as uuidv4 } from 'uuid';
 
 interface PropsStyle {
     backgroundColor: string;
@@ -52,11 +52,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '-5px',
         textAlign: 'right'
     },
-    cardChip: (chipColor: PropsStyle) =>
-        ({
-            backgroundColor: chipColor.backgroundColor,
-            color: chipColor.color
-        } as any),
+    cardChip: (chipColor: PropsStyle) => ({
+        backgroundColor: chipColor.backgroundColor,
+        color: chipColor.color
+    }),
     cardChipBasic: {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.white.main
@@ -116,7 +115,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
+export interface Props {
+    answer: string;
+    id: string;
+    level: string;
+    question: string;
+}
+
+const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
     let chipColor;
 
     if (level === 'basic') {
@@ -140,22 +146,24 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
 
     const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
-    const handlerAccordion = (event: any, expanded: any) => {
-        setIsAccordionOpen(expanded);
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
+    const handlerAccordion = () => {
+        setIsAccordionOpen(true);
     };
 
     const handlerCloseAccordion = () => {
         setIsAccordionOpen(false);
     };
 
-    function transform(node: { type: string; name: string; children: any[] }, index: any) {
+    function transform(node: { type: string; name: string; children: HTMLElement[] }) {
         if (node.type === 'tag' && node.name === 'code') {
             return (
                 <SyntaxHighlighter
                     language="javascript"
                     style={atomOneDark}
                     wrapLines={true}
-                    wrapLongLines={true}>
+                    wrapLongLines={true}
+                    key={`${uuidv4()}`}>
                     {processNodes(node.children, transform)}
                 </SyntaxHighlighter>
             );
@@ -163,6 +171,7 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
     }
 
     const options = {
+        decodeEntities: true,
         transform
     };
 
@@ -179,7 +188,7 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
             <Grid item xs={12}>
                 <Accordion
                     className={classes.Accordion}
-                    onChange={(event: any, expanded: any) => handlerAccordion(event, expanded)}
+                    onChange={handlerAccordion}
                     expanded={isAccordionOpen}>
                     {!isAccordionOpen && (
                         <AccordionSummary
@@ -193,11 +202,11 @@ const QuestionCard = ({ answer, id, level, question }: questionCardModel) => {
                             )}
                         </AccordionSummary>
                     )}
-                    <Fade in={isAccordionOpen} timeout={600}>
+                    <Fade in={true} timeout={600}>
                         <AccordionDetails className={classes.AccordionDetailsSession}>
                             <Box>
                                 <Box className={classes.AccordionDetailsTitle}>
-                                    <Typography>{ReactHtmlParser(answer, options)}</Typography>
+                                    {ReactHtmlParser(answer, options)}
                                 </Box>
                                 <Box className={classes.AccordionDetailsButton}>
                                     {isAccordionOpen && (

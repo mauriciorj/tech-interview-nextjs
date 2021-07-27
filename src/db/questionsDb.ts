@@ -41,12 +41,12 @@ export const questionsDb = {
                 <li><strong>Object</strong> - Used to store collection of data.</li>
                 </ul>
                 <p>Example:</p>
-                <p><code>// Collection of data in key-value pairs\nvar obj1 = {\n   &nbsp;&nbsp;x:  "Paul",\n   &nbsp;&nbsp;y:  2020,\n   &nbsp;&nbsp;z: function(x){\n      &nbsp;&nbsp;return x;\n   &nbsp;&nbsp;}\n}</code></p>
+                <code>// Collection of data in key-value pairs\nvar obj1 = {\n   &nbsp;&nbsp;x:  "Paul",\n   &nbsp;&nbsp;y:  2020,\n   &nbsp;&nbsp;z: function(x){\n      &nbsp;&nbsp;return x;\n   &nbsp;&nbsp;}\n}</code>
                 <ul>
                 <br><li><strong>Array</strong> - List of collection of data.</span></li>
                 </ul>
-                <p><span style="color: rgb(0,0,0);font-size: medium;font-family: -apple-system, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;">Example:</span></p>
-                <p><code>// Collection of data as an ordered list\nvar array = [100, "Hello World", true];</code></p>
+                <span>Example:</span>
+                <code>// Collection of data as an ordered list\n var array = [100, "Hello World", true];</code>
                 `,
                 level: 'basic',
                 tech: 'javascript'
@@ -64,7 +64,7 @@ export const questionsDb = {
                 <ul>
                 <li>Example 2:</li>
                 </ul>
-                <p><code>myFunc();  // Outputs "Hello Paul"\n   function myFunc(){\n   console.log("Hello Paul");\n}</code></p>
+                <code>myFunc();  // Outputs "Hello Paul"\n   function myFunc(){\n   console.log("Hello Paul");\n}</code>
                 <ul>
                 <li>Example 3:</li>
                 </ul>
@@ -72,7 +72,7 @@ export const questionsDb = {
                 <ul>
                 <li><strong>Important</strong>- variable initializations are not hoisted. Only variable declarations are hoisted!</li>
                 </ul>
-                <p><code>var x;\nconsole.log(x); // Outputs "undefined" because the initialization of "x" is not hoisted\nx = 23;</code></p>
+                <code>var x;\nconsole.log(x); // Outputs "undefined" because the initialization of "x" is not hoisted\nx = 23;</code>
                 `,
                 level: 'basic',
                 tech: 'javascript'
@@ -84,7 +84,7 @@ export const questionsDb = {
                 answer: `<p>Both are comparison operators. The big difference between both the operators is:</p>
                 <p>“==”      is used to compare values - and behind the scenes, in this case Javascript is converting the string to a number <span style="color: rgb(0,0,0);background-color: rgb(255,255,255);font-size: 15px;font-family: Verdana, sans-serif;">when doing the comparison</span><br>“ === “ is used to compare both value and types.</p>
                 <p>Example:</p>
-                <p><code>var x = 2;\nvar y = "2";\n(x == y)  // Returns true since the value of both x and y is the same\n(x === y) // Returns false since the typeof x is "number" and typeof y is "string"</code></p>`,
+                <code>var x = 2;\nvar y = "2";\n(x == y)  // Returns true since the value of both x and y is the same\n(x === y) // Returns false since the typeof x is "number" and typeof y is "string"</code>`,
                 level: 'basic',
                 tech: 'javascript'
             },
@@ -96,7 +96,7 @@ export const questionsDb = {
                 <p style="text-align:start;">JavaScript is a dynamically typed language :)</p>
                 <p>Since javascript is a loosely (dynamically) typed language, variables in JS are not associated with any type. A variable can hold the value of any data type.</p>
                 <p>For example, a variable that is assigned a number type can be converted to a string type:</p>
-                <p><code>var a = 100;\nvar a = "My name is Bob";</code></p>`,
+                <code>var a = 100;\nvar a = "My name is Bob";</code>`,
                 level: 'basic',
                 tech: 'javascript'
             },

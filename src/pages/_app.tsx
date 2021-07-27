@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from '../styles/theme';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
             {typeof window === 'undefined' ? null : (

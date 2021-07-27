@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const StayTuned = () => {
+const StayTuned: React.FC = () => {
     const classes = useStyles();
 
     const [formInput, setFormInput] = useState('');
@@ -113,7 +113,10 @@ const StayTuned = () => {
         return setIsLoading(false);
     };
 
-    const Emoji = (props: any) => (
+    const Emoji = (props: {
+        label?: string;
+        symbol: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal;
+    }) => (
         <span
             role="img"
             className={classes.emoji}

@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Home() {
+const Home: React.FC = () => {
     const classes = useStyles();
 
     const {
@@ -121,4 +121,6 @@ export default function Home() {
             </Grid>
         </div>
     ) : null; // TODO: create a pre loading skeleton
-}
+};
+
+export default Home;

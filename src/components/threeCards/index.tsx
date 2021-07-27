@@ -2,11 +2,6 @@ import React from 'react';
 import { Avatar, Box, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
 import { translations } from '../../translations';
 
-interface PropsStyle {
-    backgroundColor: string;
-    color: string;
-}
-
 const useStyles = makeStyles((theme) => ({
     sessionTitle: {
         textAlign: 'center',
@@ -45,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ThreeCards = () => {
+const ThreeCards: React.FC = () => {
     const classes = useStyles();
 
     const {

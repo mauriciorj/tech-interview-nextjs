@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const StartHere = () => {
+const StartHere: React.FC = () => {
     const classes = useStyles();
 
     const {

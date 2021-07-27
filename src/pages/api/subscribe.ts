@@ -1,4 +1,10 @@
-export default async (req: any, res: any) => {
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+type Data = {
+    error?: string | null;
+};
+
+export default async (req: NextApiRequest, res: NextApiResponse<Data>): Promise<void> => {
     const { email } = req.body;
 
     if (!email) {

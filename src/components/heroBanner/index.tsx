@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const HeroBanner = () => {
+const HeroBanner: React.FC = () => {
     const classes = useStyles();
 
     const [count, setCount] = useState(1);
