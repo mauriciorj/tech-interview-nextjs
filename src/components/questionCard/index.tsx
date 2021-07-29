@@ -179,7 +179,7 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
         <Paper className={classes.card} key={id} elevation={1}>
             <Grid item xs={12} className={classes.cardHeader}>
                 <Grid item xs={8} className={classes.cardTitle}>
-                    <strong>Question:</strong> {ReactHtmlParser(question)}
+                    {ReactHtmlParser(question)}
                 </Grid>
                 <Grid item xs={4} className={classes.cardChipSession}>
                     <Chip label={level} className={classes.cardChip} />

@@ -14,7 +14,7 @@ declare module '@material-ui/core/styles/createBreakpoints' {
     }
 }
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles' {
     interface Theme {
         appDrawer: {
             width: React.CSSProperties['width'];

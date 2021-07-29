@@ -45,13 +45,7 @@ const OurNumbers: React.FC = () => {
                     {ourNumbers.title}
                 </Typography>
             </Box>
-            <Grid
-                container
-                item
-                laptop={12}
-                xs={12}
-                spacing={2}
-                className={classes.ourNumbersSession}>
+            <Grid container item xs={12} spacing={2} className={classes.ourNumbersSession}>
                 {ourNumbers.numbers.map((number, index) => (
                     <Grid
                         item
