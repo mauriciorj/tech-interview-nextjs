@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { Box, Divider, Grid, makeStyles, Typography } from '@material-ui/core';
+import Pagination from '@material-ui/lab/Pagination';
 import { useRouter } from 'next/dist/client/router';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
@@ -59,21 +60,48 @@ const useStyles = makeStyles((theme) => ({
             marginLeft: '20px',
             paddingRight: '10px'
         }
+    },
+    pagination: {
+        display: 'flex',
+        justifyContent: 'center'
     }
 }));
 
 export interface Props {
+    map(
+        arg0: (item: { answer: string; id: string; level: string; question: string }) => JSX.Element
+    ): React.ReactNode;
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
+    sort(arg0: (a: QuestionType, b: QuestionType) => 1 | 0 | -1): any;
     data: {
         answer: string;
         id: string;
         level: string;
+        order: number;
         question: string;
+        tech: string;
     }[];
+}
+
+export interface QuestionType {
+    answer: string;
+    id: string;
+    level: string;
+    order: number;
+    question: string;
+    tech: string;
 }
 
 const Questions: React.FC<Props> = ({ data }) => {
     const classes = useStyles();
     const router = useRouter();
+
+    const [isMounted, setIsMounted] = useState<boolean>(false);
+    const [questionsList, setQuestionsList] = useState<Array<QuestionType> | []>([]);
+    const [pagesNumber, setPagesNumber] = useState<number>(0);
+    const [questionsPerPage, setQuestionsPerPage] = useState<number>(10);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [currentQuestions, setCurrentQuestions] = useState<Array<QuestionType> | []>([]);
 
     const {
         en: { og_url, techList }
@@ -99,13 +127,38 @@ const Questions: React.FC<Props> = ({ data }) => {
         }
     ];
 
-    const [isMounted, setIsMounted] = useState<boolean>(false);
+    const sortQuestions = (data: Props) => {
+        const orderQuestions = data.sort((a: QuestionType, b: QuestionType) =>
+            a.order > b.order ? 1 : b.order > a.order ? -1 : 0
+        );
+        setQuestionsList(orderQuestions);
+
+        const lastItemIndex = currentPage * questionsPerPage;
+        const firstItemIndex = lastItemIndex - questionsPerPage;
+        const questionToShow = orderQuestions.slice(firstItemIndex, lastItemIndex);
+        setCurrentQuestions(questionToShow);
+    };
+
+    useEffect(() => {
+        const lastItemIndex = currentPage * questionsPerPage;
+        const firstItemIndex = lastItemIndex - questionsPerPage;
+        const questionToShow = questionsList.slice(firstItemIndex, lastItemIndex);
+        setCurrentQuestions(questionToShow);
+    }, [currentPage]);
 
     useEffect(() => {
         setIsMounted(true);
+        if (data) {
+            sortQuestions(data as unknown as Props);
+            const calcQuestionsPerPage = data.length / questionsPerPage;
+            setPagesNumber(calcQuestionsPerPage);
+        }
     }, []);
 
-    const getQuestions = data;
+    const onChangePagination = (_event: React.ChangeEvent<unknown>, page: number) => {
+        setCurrentPage(page);
+    };
+
     const getDescription = techList?.find((item) => item);
 
     return isMounted ? (
@@ -141,7 +194,7 @@ const Questions: React.FC<Props> = ({ data }) => {
                         </Box>
                         <Divider className={classes.divider} />
                         <Grid item xs={12} md={12} className={classes.cardSession}>
-                            {getQuestions.map(
+                            {currentQuestions?.map(
                                 (item: {
                                     answer: string;
                                     id: string;
@@ -157,6 +210,14 @@ const Questions: React.FC<Props> = ({ data }) => {
                                     />
                                 )
                             )}
+                        </Grid>
+                        <Grid item xs={12} md={12} className={classes.pagination}>
+                            <Pagination
+                                count={pagesNumber}
+                                shape="rounded"
+                                color="primary"
+                                onChange={(event, page) => onChangePagination(event, page)}
+                            />
                         </Grid>
                     </Grid>
                 </Grid>

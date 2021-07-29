@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
 
     return (
         <>
-            <Grid container item laptop={12} xs={12} spacing={2} className={classes.sessionWrap}>
+            <Grid container item xs={12} spacing={2} className={classes.sessionWrap}>
                 <Grid item md={3} xs={10}>
                     <Link href="/">
                         <a>
