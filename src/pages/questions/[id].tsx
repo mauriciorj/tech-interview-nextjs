@@ -11,6 +11,7 @@ import { translations } from '../../translations';
 import { questionsDb } from '../../db/questionsDb';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
+import QuestionsFilter from '../../components/questionsFilter';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,6 +48,14 @@ const useStyles = makeStyles((theme) => ({
     },
     titleText: {
         paddingLeft: '15px'
+    },
+    filterArea: {
+        display: 'flex'
+    },
+    filterAreaTitle: {
+        marginTop: '10px',
+        marginLeft: '30px',
+        color: theme.palette.themeGrey.dark
     },
     divider: {
         marginLeft: '20px'
@@ -92,16 +101,25 @@ export interface QuestionType {
     tech: string;
 }
 
+export interface QuestionsLevels {
+    [key: string]: boolean;
+}
+
 const Questions: React.FC<Props> = ({ data }) => {
     const classes = useStyles();
     const router = useRouter();
 
     const [isMounted, setIsMounted] = useState<boolean>(false);
-    const [questionsList, setQuestionsList] = useState<Array<QuestionType> | []>([]);
     const [pagesNumber, setPagesNumber] = useState<number>(0);
     const [questionsPerPage, setQuestionsPerPage] = useState<number>(10);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [currentQuestions, setCurrentQuestions] = useState<Array<QuestionType> | []>([]);
+    const [totalQuestions, setTotalQuestions] = useState<number | null>(null);
+    const [questionsLevels, setQuestionsLevels] = useState<QuestionsLevels>({
+        basic: true,
+        intermediate: true,
+        advanced: true
+    });
 
     const {
         en: { og_url, techList }
@@ -127,39 +145,63 @@ const Questions: React.FC<Props> = ({ data }) => {
         }
     ];
 
-    const sortQuestions = (data: Props) => {
+    const sortQuestions = (data: Props | QuestionType[]) => {
         const orderQuestions = data.sort((a: QuestionType, b: QuestionType) =>
             a.order > b.order ? 1 : b.order > a.order ? -1 : 0
         );
-        setQuestionsList(orderQuestions);
-
         const lastItemIndex = currentPage * questionsPerPage;
         const firstItemIndex = lastItemIndex - questionsPerPage;
         const questionToShow = orderQuestions.slice(firstItemIndex, lastItemIndex);
         setCurrentQuestions(questionToShow);
-    };
+        setTotalQuestions(orderQuestions.length);
 
-    useEffect(() => {
-        const lastItemIndex = currentPage * questionsPerPage;
-        const firstItemIndex = lastItemIndex - questionsPerPage;
-        const questionToShow = questionsList.slice(firstItemIndex, lastItemIndex);
-        setCurrentQuestions(questionToShow);
-    }, [currentPage]);
+        const calcQuestionsPerPage = Math.ceil(orderQuestions.length / questionsPerPage);
+        setPagesNumber(calcQuestionsPerPage);
+        if (calcQuestionsPerPage === 1) {
+            setCurrentPage(1);
+        }
+    };
 
     useEffect(() => {
         setIsMounted(true);
         if (data) {
             sortQuestions(data as unknown as Props);
-            const calcQuestionsPerPage = data.length / questionsPerPage;
-            setPagesNumber(calcQuestionsPerPage);
         }
     }, []);
+
+    useEffect(() => {
+        const getFilteredQuestions = data.reduce(
+            (acc: QuestionType[], finalQuestions: QuestionType) => {
+                if (
+                    questionsLevels[finalQuestions.level] === true &&
+                    finalQuestions.level in questionsLevels
+                ) {
+                    return [...acc, finalQuestions];
+                } else {
+                    return acc;
+                }
+            },
+            []
+        );
+        sortQuestions(getFilteredQuestions);
+    }, [currentPage, questionsPerPage, questionsLevels]);
 
     const onChangePagination = (_event: React.ChangeEvent<unknown>, page: number) => {
         setCurrentPage(page);
     };
 
     const getDescription = techList?.find((item) => item);
+
+    const levelFilterOnClick = (level: string) => {
+        setQuestionsLevels((prevState) => ({
+            ...prevState,
+            [level]: !questionsLevels[level as any]
+        }));
+    };
+
+    const handleChangeQuestionsPerPage = (questions: string) => {
+        setQuestionsPerPage(parseInt(questions));
+    };
 
     return isMounted ? (
         <div className={classes.root}>
@@ -193,6 +235,24 @@ const Questions: React.FC<Props> = ({ data }) => {
                             </Typography>
                         </Box>
                         <Divider className={classes.divider} />
+                        <Grid item xs={12} className={classes.filterArea}>
+                            <Grid item xs={5} md={3} className={classes.filterAreaTitle}>
+                                <Typography>
+                                    <strong>Questions:</strong> {totalQuestions}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={7} md={9}>
+                                {questionsLevels && totalQuestions && (
+                                    <QuestionsFilter
+                                        questionsLevels={questionsLevels}
+                                        questionsPerPage={questionsPerPage}
+                                        handleChangeQuestionsPerPage={handleChangeQuestionsPerPage}
+                                        onClick={levelFilterOnClick}
+                                        totalQuestions={totalQuestions}
+                                    />
+                                )}
+                            </Grid>
+                        </Grid>
                         <Grid item xs={12} md={12} className={classes.cardSession}>
                             {currentQuestions?.map(
                                 (item: {
