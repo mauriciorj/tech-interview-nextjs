@@ -1,24 +1,6 @@
 import React from 'react';
-import { Button, makeStyles } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { theme as themeGlobal } from '../../styles/theme';
-
-interface PropsStyle {
-    backgroundColor: string;
-    color: string;
-}
-
-const useStyles = makeStyles((theme) => ({
-    cardChip: (chipColor: PropsStyle) => ({
-        backgroundColor: chipColor.backgroundColor,
-        color: chipColor.color,
-        marginLeft: '5px',
-        '&:hover': {
-            backgroundColor: theme.palette.themeGrey.light,
-            color: theme.palette.themeGrey.dark,
-            border: `solid 1px ${theme.palette.themeGrey.dark}`
-        }
-    })
-}));
 
 export interface Props {
     label: string;
@@ -51,10 +33,16 @@ const LevelButton: React.FC<Props> = ({ label, state, onClick }) => {
         };
     }
 
-    const classes = useStyles(chipColor);
-
     return (
-        <Button size="small" className={classes.cardChip} onClick={() => onClick(label)}>
+        <Button
+            size="small"
+            style={{
+                backgroundColor: chipColor.backgroundColor,
+                color: chipColor.color,
+                marginLeft: '5px'
+            }}
+            onClick={() => onClick(label)}
+            variant="contained">
             {label}
         </Button>
     );
