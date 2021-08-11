@@ -33,7 +33,7 @@ export const translations = {
             {
                 title: 'React',
                 order: 2,
-                icon: 'react_icon_100_100.webp',
+                icon: 'react_icon_100_100.png',
                 description: 'The best React questions to help you to be prepared for your next interview',
                 link: '/questions/react'
             }

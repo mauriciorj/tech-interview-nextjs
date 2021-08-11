@@ -88,7 +88,10 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     mobileMenuFooter: {
-        marginTop: '10px'
+        position: 'fixed',
+        bottom: '10px',
+        width: '100%',
+        margin: '0 auto'
     },
     mobileMenuContactUs: {
         marginTop: '15px',
@@ -136,7 +139,7 @@ const Header: React.FC = () => {
         en: { logo, contactEmail, headerMenu, techList }
     } = translations;
 
-    const body = (
+    const mobileMenu = (
         <Fade in={isMobileMenuOpen}>
             <Grid container item xs={12} className={classes.mobileMenu}>
                 <Grid item xs={12} className={classes.mobileMenuHeader}>
@@ -158,23 +161,27 @@ const Header: React.FC = () => {
                             <Typography variant="h6">{headerMenu.techTitle}</Typography>
                         </Grid>
                         {techList.map((tech, index) => (
-                            <Grid
-                                item
-                                xs={12}
-                                key={`tech-${index}`}
-                                className={classes.mobileMenuItemsItems}>
-                                <Box className={classes.menuIcon}>
-                                    <Image
-                                        src={`/icons/${tech.icon}`}
-                                        alt={tech.title}
-                                        width={25}
-                                        height={25}
-                                    />
-                                </Box>
-                                <Link href={tech.link}>
-                                    <a>{tech.title}</a>
-                                </Link>
-                            </Grid>
+                            <Link href={tech.link} key={`techLink-${index}`}>
+                                <a>
+                                    <Grid
+                                        item
+                                        xs={12}
+                                        key={`tech-${index}`}
+                                        className={classes.mobileMenuItemsItems}
+                                        onClick={handleMobileMenuClose}>
+                                        <Box className={classes.menuIcon}>
+                                            <Image
+                                                src={`/icons/${tech.icon}`}
+                                                alt={tech.title}
+                                                width={25}
+                                                height={25}
+                                            />
+                                        </Box>
+
+                                        {tech.title}
+                                    </Grid>
+                                </a>
+                            </Link>
                         ))}
                     </Grid>
                     <Grid item xs={12} className={classes.mobileMenuFooter}>
@@ -193,17 +200,17 @@ const Header: React.FC = () => {
         </Fade>
     );
 
-    const renderMobileDesktop = (
+    const renderMobileMenu = (
         <Modal
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
             className={classes.mobileMenu}
             disableScrollLock={true}>
-            {body}
+            {mobileMenu}
         </Modal>
     );
 
-    const renderMenuDesktop = (
+    const renderDesktopMenu = (
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -218,19 +225,21 @@ const Header: React.FC = () => {
                 <strong>{headerMenu.techTitle}</strong>
             </MenuItem>
             {techList.map((tech, index) => (
-                <MenuItem key={`tech-${index}`}>
-                    <Box className={classes.menuIcon}>
-                        <Image
-                            src={`/icons/${tech.icon}`}
-                            alt={tech.title}
-                            width={25}
-                            height={25}
-                        />
-                    </Box>
-                    <Link href={tech.link}>
-                        <a>{tech.title}</a>
-                    </Link>
-                </MenuItem>
+                <Link href={tech.link} key={`techLink-${index}`}>
+                    <a>
+                        <MenuItem key={`tech-${index}`} onClick={handleMenuClose}>
+                            <Box className={classes.menuIcon}>
+                                <Image
+                                    src={`/icons/${tech.icon}`}
+                                    alt={tech.title}
+                                    width={25}
+                                    height={25}
+                                />
+                            </Box>
+                            {tech.title}
+                        </MenuItem>
+                    </a>
+                </Link>
             ))}
             <MenuItem className={classes.menuContactUs}>
                 <strong>{headerMenu.contactUsTitle}</strong>
@@ -274,8 +283,8 @@ const Header: React.FC = () => {
                     </Grid>
                 </Toolbar>
             </AppBar>
-            {renderMenuDesktop}
-            {renderMobileDesktop}
+            {renderDesktopMenu}
+            {renderMobileMenu}
         </div>
     );
 };

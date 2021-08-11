@@ -64,19 +64,19 @@ const Home: React.FC = () => {
     return isMounted ? (
         <div className={classes.root}>
             <Grid container item xs={12}>
-                <Grid item xs={12} className={classes.header} data-aos="fade">
+                <Grid item xs={12} className={classes.header}>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <Header />
                     </Grid>
                 </Grid>
-                <Grid item xs={12} className={classes.heroBanner} data-aos="fade">
+                <Grid item xs={12} className={classes.heroBanner}>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <HeroBanner />
                     </Grid>
                 </Grid>
-                <Grid item xs={12} className={classes.ThreeCards} data-aos="fade">
+                <Grid item xs={12} className={classes.ThreeCards}>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
                         <ThreeCards />

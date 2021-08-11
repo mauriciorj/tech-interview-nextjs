@@ -245,7 +245,7 @@ const Questions: React.FC<Props> = ({ data }) => {
                                 </Typography>
                             </Grid>
                             <Grid item xs={7} md={9}>
-                                {questionsLevels && totalQuestions && (
+                                {questionsLevels && (
                                     <QuestionsFilter
                                         questionsLevels={questionsLevels}
                                         questionsPerPage={questionsPerPage}
