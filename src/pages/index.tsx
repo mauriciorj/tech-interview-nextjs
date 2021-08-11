@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex'
     },
     heroBanner: {
-        display: 'flex',
-        maxHeight: '500px'
+        display: 'flex'
     },
     ThreeCards: {
         backgroundColor: theme.palette.themeGrey.light,
