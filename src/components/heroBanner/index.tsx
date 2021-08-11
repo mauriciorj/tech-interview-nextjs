@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Typography, useMediaQuery } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 import { translations } from '../../translations';
 import Image from 'next/image';
 import heroBannerImg from '../../assets/img/interview.webp';
@@ -7,9 +8,14 @@ import Typist from 'react-typist';
 
 const useStyles = makeStyles((theme) => ({
     sessionMainDiv: {
-        flexGrow: 1,
         justifyContent: 'space-between',
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.down('sm')]: {
+            display: 'flex',
+            paddingTop: '50px',
+            flexDirection: 'column',
+            minHeight: '300px'
+        }
     },
     sessionMainText: {
         marginTop: '200px',
@@ -19,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     sessionMainImg: {
-        textAlign: 'end'
+        maxHeight: '500px'
+    },
+    mainImg: {
+        zIndex: -1
     },
     subTitle: {
         marginTop: '20px'
@@ -34,6 +43,9 @@ const HeroBanner: React.FC = () => {
     const classes = useStyles();
 
     const [count, setCount] = useState(1);
+
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
     const {
         en: { heroBanner }
@@ -52,7 +64,7 @@ const HeroBanner: React.FC = () => {
 
     return (
         <Grid container item xs={12} className={classes.sessionMainDiv}>
-            <Grid item xs={12} sm={12} md={6} className={classes.sessionMainText}>
+            <Grid item xs={12} sm={12} md={5} className={classes.sessionMainText}>
                 <Typography variant="h4">{heroBanner.title}</Typography>
                 <Typography variant="h5" className={classes.subTitle}>
                     {count ? (
@@ -73,9 +85,15 @@ const HeroBanner: React.FC = () => {
                     )}
                 </Typography>
             </Grid>
-            <Grid item xs={12} sm={12} md={6} className={classes.sessionMainImg}>
-                <Image src={heroBannerImg} alt={heroBanner.altText} width={500} height={500} />
-            </Grid>
+            {matches ? (
+                <Grid item xs={12} sm={12} md={7} className={classes.sessionMainImg}>
+                    <Image
+                        src={heroBannerImg}
+                        alt={heroBanner.altText}
+                        className={classes.mainImg}
+                    />
+                </Grid>
+            ) : null}
         </Grid>
     );
 };
