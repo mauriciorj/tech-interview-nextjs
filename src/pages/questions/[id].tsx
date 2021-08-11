@@ -163,10 +163,13 @@ const Questions: React.FC<Props> = ({ data }) => {
     };
 
     useEffect(() => {
-        setIsMounted(true);
         if (data) {
             sortQuestions(data as unknown as Props);
         }
+    }, [data]);
+
+    useEffect(() => {
+        setIsMounted(true);
     }, []);
 
     useEffect(() => {
@@ -190,7 +193,7 @@ const Questions: React.FC<Props> = ({ data }) => {
         setCurrentPage(page);
     };
 
-    const getDescription = techList?.find((item) => item);
+    const getDescription = techList?.find((item) => item.title === title);
 
     const levelFilterOnClick = (level: string) => {
         setQuestionsLevels((prevState) => ({
