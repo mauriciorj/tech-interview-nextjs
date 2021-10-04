@@ -3,7 +3,7 @@ export const questionsDb = {
         javascript: [
             {
                 id: '93b0c599-6f44-42c3-a310-2d573c8bd12a',
-                order: '0001',
+                order: 1,
                 question: 'What are the different data types present in javascript?',
                 answer: `<p>To know the type of a JavaScript variable, we can use the <b>typeof</b> operator.</p>
                 <p><strong>Primitive types</strong></p>
@@ -53,7 +53,7 @@ export const questionsDb = {
             },
             {
                 id: '0e485c22-f141-438e-a2a9-18ca331742f6',
-                order: '0002',
+                order: 2,
                 question: 'What is Hoisting?',
                 answer: `<p>Hoisting is the default behavior of javascript where all the variable and function declarations are moved on top.</p>
                 <p>This means the variables and functions declared are moved on top of the scope.</p>
@@ -79,7 +79,7 @@ export const questionsDb = {
             },
             {
                 id: '7353808e-5659-4b2f-b9fa-993245fbdca2',
-                order: '0003',
+                order: 3,
                 question: 'Difference between “ == “ and “ === “ operators.',
                 answer: `<p>Both are comparison operators. The big difference between both the operators is:</p>
                 <p>“==”      is used to compare values - and behind the scenes, in this case Javascript is converting the string to a number <span style="color: rgb(0,0,0);background-color: rgb(255,255,255);font-size: 15px;font-family: Verdana, sans-serif;">when doing the comparison</span><br>“ === “ is used to compare both value and types.</p>
@@ -90,7 +90,7 @@ export const questionsDb = {
             },
             {
                 id: 'bb2f98fc-99b5-4a09-ac97-75ea64e3e129',
-                order: '0004',
+                order: 4,
                 question: 'Javascript: is a statically typed or a dynamically typed language?',
                 answer: `<p style="text-align:start;"><span style="color: rgb(0,0,0);font-size: medium;font-family: -apple-system, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;"><strong>Dynamically</strong> typed language: the type of a variable is checked during run-time.<br><strong>Statically</strong> typed language: the type of a variable is checked during compile-time.</span></p>
                 <p style="text-align:start;">JavaScript is a dynamically typed language :)</p>
@@ -102,13 +102,35 @@ export const questionsDb = {
             },
             {
                 id: 'b6a22762-0a7d-428b-8909-395e9e8a4220',
-                order: '0005',
+                order: 5,
                 question: 'What is NaN property?',
                 answer: `<p>NaN property represents “Not-a-Number” value. It indicates a value that is not a number.</p>
                 If you try typeof of a NaN (using isNaN() function) it will try to convert the value to a number and return a boolean.
                 <code>NaN === NaN; // false\nNumber.NaN === NaN; // false\nisNaN(NaN); // true\nisNaN(Number.NaN); // true\nNumber.isNaN(NaN); // true\nfunction valueIsNaN(v) { return v !== v; }\nvalueIsNaN(1); // false\nvalueIsNaN(NaN); // true\nvalueIsNaN(Number.NaN); // true</code>
                 Additionally, some array methods cannot find NaN, while others can.
                 <code>let arr = [2, 4, NaN, 12];\narr.indexOf(NaN); // -1 (false)\narr.includes(NaN); // true\narr.findIndex(n => Number.isNaN(n)); // 2`,
+                level: 'basic',
+                tech: 'javascript'
+            },
+            {
+                id: 'b6a22762-0a7d-428b-1109-395e9e8a4220',
+                order: 6,
+                question: 'What is an Immediately Invoked Function in JavaScript??',
+                answer: `<p><span>An Immediately Invoked Function (known as IIFE and pronounced as IIFY) is a function that runs itself as soon as it is defined.
+                </span></p><p><span>Syntax of IIFE :</span></p>
+                <code>(function(){ \n// Do something;\n})();</code>`,
+                level: 'basic',
+                tech: 'javascript'
+            },
+            {
+                id: 'c0aa2162-ca7d-428b-1109-395e9e8a4220',
+                order: 7,
+                question: 'Explain Higher Order Functions in javascript.',
+                answer: `<p>Functions that operate on other functions, either by taking them as arguments or by returning them, are called higher-order functions.</p>
+                <p>Higher order functions are a result of functions being first-class citizens in javascript.</p>
+                <p>Examples of higher order functions:</p>
+                <code>function higherOrder(fn) {\n  fn();\n}\nhigherOrder(function() { console.log("Hello world") });</code>
+                <code>function higherOrder2() {\n  return function() {\n    return "Do something";\n  }\n}\n\nvar x = higherOrder2();\nx()   // Returns "Do something"</code>`,
                 level: 'basic',
                 tech: 'javascript'
             }
