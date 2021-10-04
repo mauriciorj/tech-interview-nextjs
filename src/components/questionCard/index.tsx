@@ -19,6 +19,7 @@ import ReactHtmlParser, { processNodes } from 'react-html-parser';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect } from 'react';
 
 interface PropsStyle {
     backgroundColor: string;
@@ -120,9 +121,10 @@ export interface Props {
     id: string;
     level: string;
     question: string;
+    accordionOpen?: boolean;
 }
 
-const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
+const QuestionCard: React.FC<Props> = ({ answer, id, level, question, accordionOpen }) => {
     let chipColor;
 
     if (level === 'basic') {
@@ -155,8 +157,22 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question }) => {
         setIsAccordionOpen(false);
     };
 
+    useEffect(() => {
+        if (accordionOpen) {
+            setIsAccordionOpen(true);
+        }
+    }, [accordionOpen]);
+
     function transform(node: { type: string; name: string; children: HTMLElement[] }) {
-        if (node.type === 'tag' && node.name === 'code') {
+        if (node.type === 'tag' && (node.name === 'code' || node.name === 'pre')) {
+            // const test = node.children.map((child) => {
+            //     if (child && child.name === 'br') {
+            //         return {...child, data: '\n', type: 'text'};
+            //       } else {
+            //         return child;
+            //       }
+            // });
+            // console.log(test)
             return (
                 <SyntaxHighlighter
                     language="javascript"
