@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { FormControl, Grid, makeStyles, NativeSelect, Typography } from '@material-ui/core';
-import {
-    EditorState,
-    convertToRaw,
-    ContentState,
-    RichUtils,
-    DefaultDraftBlockRenderMap
-} from 'draft-js';
-import { convertToHTML, convertFromHTML } from 'draft-convert';
+import { EditorState, convertToRaw, RichUtils } from 'draft-js';
+import { convertFromHTML } from 'draft-convert';
 import draftToHtml from 'draftjs-to-html';
 import dynamic from 'next/dynamic';
 import QuestionCard from '../../components/questionCard';
-import { Map } from 'immutable';
 import { v4 as uuidv4 } from 'uuid';
 import { questionsDb } from '../../db/questionsDb';
 
@@ -19,10 +12,6 @@ import { questionsDb } from '../../db/questionsDb';
 const Editor = dynamic<any>(() => import('react-draft-wysiwyg').then((mod) => mod.Editor), {
     ssr: false
 });
-
-interface questionsDbInterface {
-    en: string;
-}
 
 const useStyles = makeStyles((theme) => ({
     mainDiv: {
@@ -134,14 +123,6 @@ const ControlledEditor: React.FC = () => {
         return 'not-handled';
     };
 
-    const blockRenderMap = DefaultDraftBlockRenderMap.merge(
-        Map({
-            'code-block': {
-                element: 'pre'
-            }
-        })
-    );
-
     useEffect(() => {
         const questionId = uuidv4();
         setQuestionId(questionId);
@@ -170,9 +151,15 @@ const ControlledEditor: React.FC = () => {
         }
     }, [techSelected]);
 
+    const sanatizeText = (text: string) => {
+        return text;
+    }
+
     useEffect(() => {
-        const convertEditor = convertToHTML(editorState.getCurrentContent());
-        setUpdateTextArea(convertEditor);
+        const rawContentState = convertToRaw(editorState.getCurrentContent());
+        const markup = draftToHtml(rawContentState);
+        const textSanatized = sanatizeText(markup);
+        setUpdateTextArea(textSanatized);
     }, [editorStateControlAnswer]);
 
     const functionUpdateEditor = () => {
@@ -225,7 +212,7 @@ const ControlledEditor: React.FC = () => {
                 </Grid>
                 <h3 style={{ marginTop: '30px' }}>Question</h3>
                 <Editor
-                    blockRenderMap={blockRenderMap}
+                    //blockRenderMap={blockRenderMap}
                     editorState={editorStateQuestion}
                     onEditorStateChange={onEditorStateChangeQuestion}
                     handleKeyCommand={handleKeyCommandQuestion}
@@ -245,7 +232,7 @@ const ControlledEditor: React.FC = () => {
                 />
                 <h3 style={{ marginTop: '30px' }}>Answer</h3>
                 <Editor
-                    blockRenderMap={blockRenderMap}
+                    //blockRenderMap={blockRenderMap}
                     editorState={editorState}
                     onEditorStateChange={onEditorStateChangeAnswer}
                     handleKeyCommand={handleKeyCommand}
