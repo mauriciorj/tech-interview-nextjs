@@ -1191,7 +1191,7 @@
   dependencies:
     domhandler "^2.4.0"
 
-"@types/draft-convert@^2.1.4":
+"@types/draft-convert@2.1.12":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@types/draft-convert/-/draft-convert-2.1.4.tgz#8f32f86133eca5ddfede46d31a40ba6c964f605f"
   integrity sha512-NbhE0ijzENK6ZQa3zO0KK6cNS80XESnQ03Bg7DEzE/qBg6YvpIEni6vzruYCYPkm1Sc6z0K7XbtJu4p53elGdA==

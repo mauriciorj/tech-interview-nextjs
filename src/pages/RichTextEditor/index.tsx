@@ -55,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
 const ControlledEditor: React.FC = () => {
     const classes = useStyles();
 
+    const [isMounted, setIsMounted] = useState<boolean>(false);
+
     // Editor state for question
     const [editorStateControlQuestion, setEditorStateControlQuestion] = useState<any>({
         editorStateQuestion: EditorState.createEmpty()
@@ -169,7 +171,7 @@ const ControlledEditor: React.FC = () => {
     }, [techSelected]);
 
     useEffect(() => {
-        const convertEditor = convertToHTML(editorState.getCurrentContent()) as unknown as string;
+        const convertEditor = convertToHTML(editorState.getCurrentContent());
         setUpdateTextArea(convertEditor);
     }, [editorStateControlAnswer]);
 
@@ -179,7 +181,11 @@ const ControlledEditor: React.FC = () => {
         );
     };
 
-    return (
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    return isMounted ? (
         <Grid item xs={12} className={classes.mainDiv}>
             <Grid item xs={8} className={classes.leftDiv}>
                 <h1>Rich Text Editor - v1</h1>
@@ -286,7 +292,7 @@ const ControlledEditor: React.FC = () => {
                 </Typography>
             </Grid>
         </Grid>
-    );
+    ) : null;
 };
 
 export default ControlledEditor;
