@@ -152,6 +152,9 @@ const ControlledEditor: React.FC = () => {
     }, [techSelected]);
 
     const sanatizeText = (text: string) => {
+        // newline as string
+        const newLine = String.raw`\n`;
+
         return text;
     }
 
@@ -212,7 +215,6 @@ const ControlledEditor: React.FC = () => {
                 </Grid>
                 <h3 style={{ marginTop: '30px' }}>Question</h3>
                 <Editor
-                    //blockRenderMap={blockRenderMap}
                     editorState={editorStateQuestion}
                     onEditorStateChange={onEditorStateChangeQuestion}
                     handleKeyCommand={handleKeyCommandQuestion}
@@ -232,7 +234,6 @@ const ControlledEditor: React.FC = () => {
                 />
                 <h3 style={{ marginTop: '30px' }}>Answer</h3>
                 <Editor
-                    //blockRenderMap={blockRenderMap}
                     editorState={editorState}
                     onEditorStateChange={onEditorStateChangeAnswer}
                     handleKeyCommand={handleKeyCommand}

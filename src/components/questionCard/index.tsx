@@ -163,6 +163,25 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question, accordionO
         }
     }, [accordionOpen]);
 
+    // To avoid app broke when insert a empty code block
+    const emptyCodeBlock = [
+        {
+            data: '',
+            next: null,
+            parent: {
+                attribs: {},
+                children: [{ data: 'a', type: 'text', next: null, prev: null }],
+                name: 'pre',
+                next: { data: '\n', type: 'text', next: null, parent: null },
+                parent: null,
+                prev: null,
+                type: 'tag'
+            },
+            prev: null,
+            type: 'text'
+        }
+    ];
+
     function transform(node: { type: string; name: string; children: HTMLElement[] }) {
         if (node.type === 'tag' && node.name === 'pre') {
             return (
@@ -172,7 +191,7 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question, accordionO
                     wrapLines={true}
                     wrapLongLines={true}
                     key={`${uuidv4()}`}>
-                    {processNodes(node.children, transform)}
+                    {processNodes(node.children.length ? node.children : emptyCodeBlock, transform)}
                 </SyntaxHighlighter>
             );
         }
