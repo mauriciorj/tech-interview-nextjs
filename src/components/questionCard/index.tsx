@@ -15,7 +15,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { theme as themeGlobal } from '../../styles/theme';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import ReactHtmlParser, { processNodes } from 'react-html-parser';
+import ReactHtmlParser, { processNodes, convertNodeToElement } from 'react-html-parser';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { v4 as uuidv4 } from 'uuid';
@@ -163,16 +163,27 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question, accordionO
         }
     }, [accordionOpen]);
 
+    // To avoid app broke when insert a empty code block
+    const emptyCodeBlock = [
+        {
+            data: '',
+            next: null,
+            parent: {
+                attribs: {},
+                children: [{ data: 'a', type: 'text', next: null, prev: null }],
+                name: 'pre',
+                next: { data: '\n', type: 'text', next: null, parent: null },
+                parent: null,
+                prev: null,
+                type: 'tag'
+            },
+            prev: null,
+            type: 'text'
+        }
+    ];
+
     function transform(node: { type: string; name: string; children: HTMLElement[] }) {
-        if (node.type === 'tag' && (node.name === 'code' || node.name === 'pre')) {
-            // const test = node.children.map((child) => {
-            //     if (child && child.name === 'br') {
-            //         return {...child, data: '\n', type: 'text'};
-            //       } else {
-            //         return child;
-            //       }
-            // });
-            // console.log(test)
+        if (node.type === 'tag' && (node.name === 'pre' || node.name === 'code')) {
             return (
                 <SyntaxHighlighter
                     language="javascript"
@@ -180,7 +191,7 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question, accordionO
                     wrapLines={true}
                     wrapLongLines={true}
                     key={`${uuidv4()}`}>
-                    {processNodes(node.children, transform)}
+                    {processNodes(node.children.length ? node.children : emptyCodeBlock, transform)}
                 </SyntaxHighlighter>
             );
         }
