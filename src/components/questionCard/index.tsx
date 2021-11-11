@@ -183,7 +183,7 @@ const QuestionCard: React.FC<Props> = ({ answer, id, level, question, accordionO
     ];
 
     function transform(node: { type: string; name: string; children: HTMLElement[] }) {
-        if (node.type === 'tag' && node.name === 'pre') {
+        if (node.type === 'tag' && (node.name === 'pre' || node.name === 'code')) {
             return (
                 <SyntaxHighlighter
                     language="javascript"

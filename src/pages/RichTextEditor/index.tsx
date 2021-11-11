@@ -152,11 +152,9 @@ const ControlledEditor: React.FC = () => {
     }, [techSelected]);
 
     const sanatizeText = (text: string) => {
-        // newline as string
-        const newLine = String.raw`\n`;
-
-        return text;
-    }
+        const newLineBr = text.replace('<br>', '\n');
+        return newLineBr;
+    };
 
     useEffect(() => {
         const rawContentState = convertToRaw(editorState.getCurrentContent());
@@ -247,7 +245,7 @@ const ControlledEditor: React.FC = () => {
             <Grid item xs={4} className={classes.rightDiv}>
                 <h3 style={{ marginTop: '30px' }}>Card Preview</h3>
                 <QuestionCard
-                    answer={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+                    answer={updateTextArea}
                     key="richText-temp-key"
                     id="richText-temp-id"
                     level={questionLevel}
